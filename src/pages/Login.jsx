@@ -1,3 +1,140 @@
-import React,{useState}from"react";
-export default function Login(){const[email,setEmail]=useState(""),[password,setPassword]=useState(""),[error,setError]=useState("");
-function submit(e){e.preventDefault();const users=JSON.parse(localStorage.getItem("aiden_users")||"[]");const user=users.find(u=>u.email===email&&u.password===password);if(!user){setError("Correo o contraseña incorrectos.");return}localStorage.setItem("aiden_session",JSON.stringify({name:user.name,email:user.email,role:user.role}));window.location.href=user.role==="operario"?"/dashboard-operario":"/"}return <main className="min-h-screen grid lg:grid-cols-2 bg-white"><section className="flex items-center justify-center p-6 sm:p-10"><form onSubmit={submit} className="w-full max-w-md space-y-6"><a href="/" className="text-sm text-slate-500">← Regresar</a><header><p className="text-emerald-700 font-bold tracking-wide">AiDEN</p><h1 className="text-3xl font-bold text-slate-900 mt-3">Ingresa a tu cuenta</h1><p className="text-slate-500 mt-2">Ingresa tus datos para continuar</p></header>{error&&<p className="rounded-xl bg-red-50 p-3 text-sm text-red-700">{error}</p>}<label className="block text-sm font-semibold">Correo<input className="mt-2 w-full rounded-xl border border-slate-200 p-3.5 outline-none focus:border-emerald-500" type="email" value={email} onChange={e=>setEmail(e.target.value)} placeholder="Ingresa tu correo" required/></label><label className="block text-sm font-semibold">Contraseña<input className="mt-2 w-full rounded-xl border border-slate-200 p-3.5 outline-none focus:border-emerald-500" type="password" value={password} onChange={e=>setPassword(e.target.value)} placeholder="Ingresa tu contraseña" required/></label><label className="flex items-center gap-2 text-sm text-slate-600"><input type="checkbox"/> Recordar cuenta</label><button className="w-full rounded-xl bg-emerald-700 p-3.5 font-semibold text-white transition hover:bg-emerald-800">Iniciar sesión</button><p className="text-center text-sm text-slate-600"><a className="text-emerald-700" href="/forgot-password">Olvidé mi contraseña</a></p><p className="text-center text-sm text-slate-600">¿No tienes cuenta? <a className="font-semibold text-emerald-700" href="/signup">Regístrate</a></p></form></section><aside className="hidden lg:flex relative overflow-hidden bg-slate-950 p-12 text-white"><div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,rgba(16,185,129,.28),transparent_40%)]"/><div className="relative z-10 self-end max-w-xl"><p className="text-emerald-400 font-semibold">SISTEMA DE GESTIÓN INTELIGENTE</p><h2 className="mt-4 text-5xl font-bold leading-tight">Gestiona tu vivero con datos y precisión.</h2><p className="mt-5 text-slate-300">Accede a AiDEN y continúa con tus operaciones.</p></div></aside></main>}
+import React, { useState } from "react";
+
+export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  function submit(event) {
+    event.preventDefault();
+
+    const users = JSON.parse(
+      localStorage.getItem("aiden_users") || "[]"
+    );
+
+    const user = users.find(
+      (item) => item.email === email && item.password === password
+    );
+
+    if (!user) {
+      setError("Correo o contraseña incorrectos.");
+      return;
+    }
+
+    localStorage.setItem(
+      "aiden_session",
+      JSON.stringify({
+        name: user.name,
+        email: user.email,
+        role: user.role,
+      })
+    );
+
+    window.location.href =
+      user.role === "operario" ? "/dashboard-operario" : "/";
+  }
+
+  return (
+    <main className="min-h-screen grid lg:grid-cols-2 bg-white">
+      <section className="flex items-center justify-center p-6 sm:p-10">
+        <form
+          onSubmit={submit}
+          className="w-full max-w-md space-y-6"
+        >
+          <a
+            href="/"
+            className="text-sm text-slate-500"
+          >
+            ← Regresar
+          </a>
+
+          <header>
+            <p className="text-emerald-700 font-bold tracking-wide">
+              AiDEN
+            </p>
+            <h1 className="text-3xl font-bold text-slate-900 mt-3">
+              Ingresa a tu cuenta
+            </h1>
+            <p className="text-slate-500 mt-2">
+              Ingresa tus datos para continuar
+            </p>
+          </header>
+
+          {error && (
+            <p className="rounded-xl bg-red-50 p-3 text-sm text-red-700">
+              {error}
+            </p>
+          )}
+
+          <label className="block text-sm font-semibold">
+            Correo
+            <input
+              className="mt-2 w-full rounded-xl border border-slate-200 p-3.5 outline-none focus:border-emerald-500"
+              type="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              placeholder="Ingresa tu correo"
+              required
+            />
+          </label>
+
+          <label className="block text-sm font-semibold">
+            Contraseña
+            <input
+              className="mt-2 w-full rounded-xl border border-slate-200 p-3.5 outline-none focus:border-emerald-500"
+              type="password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              placeholder="Ingresa tu contraseña"
+              required
+            />
+          </label>
+
+          <label className="flex items-center gap-2 text-sm text-slate-600">
+            <input type="checkbox" />
+            Recordar cuenta
+          </label>
+
+          <button className="w-full rounded-xl bg-emerald-700 p-3.5 font-semibold text-white transition hover:bg-emerald-800">
+            Iniciar sesión
+          </button>
+
+          <p className="text-center text-sm text-slate-600">
+            <a
+              className="text-emerald-700"
+              href="/forgot-password"
+            >
+              Olvidé mi contraseña
+            </a>
+          </p>
+
+          <p className="text-center text-sm text-slate-600">
+            ¿No tienes cuenta?{" "}
+            <a
+              className="font-semibold text-emerald-700"
+              href="/signup"
+            >
+              Regístrate
+            </a>
+          </p>
+        </form>
+      </section>
+
+      <aside className="hidden lg:flex relative overflow-hidden bg-slate-950 p-12 text-white">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,rgba(16,185,129,.28),transparent_40%)]" />
+
+        <div className="relative z-10 self-end max-w-xl">
+          <p className="text-emerald-400 font-semibold">
+            SISTEMA DE GESTIÓN INTELIGENTE
+          </p>
+          <h2 className="mt-4 text-5xl font-bold leading-tight">
+            Gestiona tu vivero con datos y precisión.
+          </h2>
+          <p className="mt-5 text-slate-300">
+            Accede a AiDEN y continúa con tus operaciones.
+          </p>
+        </div>
+      </aside>
+    </main>
+  );
+}
