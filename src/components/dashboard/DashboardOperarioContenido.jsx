@@ -1,1 +1,153 @@
-import React from"react";const cards=[["Producción","12","Actividades activas","/produccion"],["Inventario","86","Insumos disponibles","/inventario"],["Calidad","94%","Cumplimiento","/calidad"],["Ambiental","24°C","Temperatura actual","/ambiental"],["Trazabilidad","18","Lotes en seguimiento","/trazabilidad"],["Alertas","3","Requieren atención","/inteligencia"]];export default function DashboardOperarioContenido(){const u=JSON.parse(localStorage.getItem("aiden_session")||"{}");function logout(){localStorage.removeItem("aiden_session");window.location.href="/login"}return <main className="min-h-screen bg-slate-100 text-slate-900"><header className="sticky top-0 z-20 border-b bg-white/90 backdrop-blur"><section className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6"><div><p className="font-bold text-emerald-700">AiDEN</p><h1 className="text-xl font-bold">Centro operativo</h1></div><div className="flex items-center gap-3"><span className="hidden text-sm text-slate-500 sm:block">{u.name||"Operario"}</span><button onClick={logout} className="rounded-lg border px-3 py-2 text-sm hover:bg-slate-50">Salir</button></div></section></header><section className="mx-auto max-w-7xl space-y-6 px-4 py-6 sm:px-6"><section className="rounded-3xl bg-slate-950 p-6 text-white sm:p-8"><p className="text-emerald-400 font-semibold">PANEL DE OPERARIO</p><h2 className="mt-2 text-3xl font-bold">Buenos días, {u.name||"Operario"}</h2><p className="mt-2 max-w-2xl text-slate-300">Monitorea producción, inventario, calidad y condiciones del vivero desde un solo lugar.</p></section><section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{cards.map(([title,value,sub,path])=><a href={path} key={title} className="group rounded-2xl border bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"><div className="flex items-start justify-between"><p className="font-semibold">{title}</p><span className="text-slate-300 transition group-hover:text-emerald-600">↗</span></div><p className="mt-5 text-3xl font-bold">{value}</p><p className="mt-1 text-sm text-slate-500">{sub}</p></a>)}</section><section className="grid gap-6 lg:grid-cols-3"><article className="lg:col-span-2 rounded-2xl border bg-white p-6"><header className="flex justify-between"><div><h3 className="font-bold">Actividad de producción</h3><p className="text-sm text-slate-500">Rendimiento de los últimos días</p></div><a href="/reportes" className="text-sm font-semibold text-emerald-700">Ver reportes</a></header><div className="mt-8 flex h-48 items-end gap-3">{[45,62,50,78,66,88,72].map((h,i)=><div key={i} className="flex-1 rounded-t-lg bg-emerald-500/80 transition hover:bg-emerald-600" style={{height:h+"%"}}/>)}</div></article><article className="rounded-2xl border bg-white p-6"><h3 className="font-bold">Acciones rápidas</h3><div className="mt-5 grid gap-3">{[["Registrar producción","/produccion"],["Registrar inventario","/inventario"],["Ver alertas","/inteligencia"],["Configuración","/configuracion"]].map(([x,p])=><a key={x} href={p} className="rounded-xl bg-slate-50 p-4 text-sm font-semibold transition hover:bg-emerald-50">{x}<span className="float-right">→</span></a>)}</div></article></section></section></main>}
+import React from "react";
+
+const cards = [
+  ["Producción", "12", "Actividades activas", "/produccion"],
+  ["Inventario", "86", "Insumos disponibles", "/inventario"],
+  ["Calidad", "94%", "Cumplimiento", "/calidad"],
+  ["Ambiental", "24°C", "Temperatura actual", "/ambiental"],
+  ["Trazabilidad", "18", "Lotes en seguimiento", "/trazabilidad"],
+  ["Alertas", "3", "Requieren atención", "/inteligencia"],
+];
+
+export default function DashboardOperarioContenido() {
+  const user = JSON.parse(
+    localStorage.getItem("aiden_session") || "{}"
+  );
+
+  function logout() {
+    localStorage.removeItem("aiden_session");
+    window.location.href = "/login";
+  }
+
+  return (
+    <main className="min-h-screen bg-slate-100 text-slate-900">
+      <header className="sticky top-0 z-20 border-b bg-white/90 backdrop-blur">
+        <section className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6">
+          <div>
+            <p className="font-bold text-emerald-700">
+              AiDEN
+            </p>
+            <h1 className="text-xl font-bold">
+              Centro operativo
+            </h1>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <span className="hidden text-sm text-slate-500 sm:block">
+              {user.name || "Operario"}
+            </span>
+
+            <button
+              onClick={logout}
+              className="rounded-lg border px-3 py-2 text-sm hover:bg-slate-50"
+            >
+              Salir
+            </button>
+          </div>
+        </section>
+      </header>
+
+      <section className="mx-auto max-w-7xl space-y-6 px-4 py-6 sm:px-6">
+        <section className="rounded-3xl bg-slate-950 p-6 text-white sm:p-8">
+          <p className="text-emerald-400 font-semibold">
+            PANEL DE OPERARIO
+          </p>
+
+          <h2 className="mt-2 text-3xl font-bold">
+            Buenos días, {user.name || "Operario"}
+          </h2>
+
+          <p className="mt-2 max-w-2xl text-slate-300">
+            Monitorea producción, inventario, calidad y condiciones del vivero desde un solo lugar.
+          </p>
+        </section>
+
+        <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {cards.map(([title, value, subtitle, path]) => (
+            <a
+              href={path}
+              key={title}
+              className="group rounded-2xl border bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
+            >
+              <div className="flex items-start justify-between">
+                <p className="font-semibold">
+                  {title}
+                </p>
+
+                <span className="text-slate-300 transition group-hover:text-emerald-600">
+                  ↗
+                </span>
+              </div>
+
+              <p className="mt-5 text-3xl font-bold">
+                {value}
+              </p>
+
+              <p className="mt-1 text-sm text-slate-500">
+                {subtitle}
+              </p>
+            </a>
+          ))}
+        </section>
+
+        <section className="grid gap-6 lg:grid-cols-3">
+          <article className="lg:col-span-2 rounded-2xl border bg-white p-6">
+            <header className="flex justify-between">
+              <div>
+                <h3 className="font-bold">
+                  Actividad de producción
+                </h3>
+                <p className="text-sm text-slate-500">
+                  Rendimiento de los últimos días
+                </p>
+              </div>
+
+              <a
+                href="/reportes"
+                className="text-sm font-semibold text-emerald-700"
+              >
+                Ver reportes
+              </a>
+            </header>
+
+            <div className="mt-8 flex h-48 items-end gap-3">
+              {[45, 62, 50, 78, 66, 88, 72].map((height, index) => (
+                <div
+                  key={index}
+                  className="flex-1 rounded-t-lg bg-emerald-500/80 transition hover:bg-emerald-600"
+                  style={{ height: height + "%" }}
+                />
+              ))}
+            </div>
+          </article>
+
+          <article className="rounded-2xl border bg-white p-6">
+            <h3 className="font-bold">
+              Acciones rápidas
+            </h3>
+
+            <div className="mt-5 grid gap-3">
+              {[
+                ["Registrar producción", "/produccion"],
+                ["Registrar inventario", "/inventario"],
+                ["Ver alertas", "/inteligencia"],
+                ["Configuración", "/configuracion"],
+              ].map(([label, path]) => (
+                <a
+                  key={label}
+                  href={path}
+                  className="rounded-xl bg-slate-50 p-4 text-sm font-semibold transition hover:bg-emerald-50"
+                >
+                  {label}
+                  <span className="float-right">
+                    →
+                  </span>
+                </a>
+              ))}
+            </div>
+          </article>
+        </section>
+      </section>
+    </main>
+  );
+}
