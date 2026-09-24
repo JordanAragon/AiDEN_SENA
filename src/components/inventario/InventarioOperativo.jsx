@@ -1,1 +1,76 @@
-import React,{useState}from"react";export default function InventarioOperativo(){const[stock,setStock]=useState(86);return <section className="space-y-6"><header><p className="text-sm font-semibold text-emerald-700">ALMACÉN</p><h2 className="text-3xl font-bold">Inventario</h2><p className="text-slate-500">Consulta existencias y registra movimientos.</p></header><div className="grid gap-4 sm:grid-cols-3">{[["Ítems disponibles",stock],["Stock bajo","7"],["Movimientos hoy","18"]].map(([x,v])=><article className="rounded-2xl border bg-white p-5" key={x}><p className="text-sm text-slate-500">{x}</p><p className="mt-1 text-3xl font-bold">{v}</p></article>)}</div><article className="rounded-2xl border bg-white p-6"><div className="flex justify-between"><h3 className="font-bold">Movimiento rápido</h3><button onClick={()=>setStock(stock+1)} className="rounded-lg bg-emerald-700 px-4 py-2 text-sm text-white">Registrar entrada</button></div><div className="mt-5 grid gap-3 sm:grid-cols-2"><div className="rounded-xl bg-slate-50 p-4"><p className="text-sm text-slate-500">Sustrato</p><b>42 unidades</b></div><div className="rounded-xl bg-slate-50 p-4"><p className="text-sm text-slate-500">Bandejas</p><b>128 unidades</b></div></div></article></section>}
+import React, { useState } from "react";
+
+export default function InventarioOperativo() {
+  const [stock, setStock] = useState(86);
+
+  return (
+    <section className="space-y-6">
+      <header>
+        <p className="text-sm font-semibold text-emerald-700">
+          ALMACÉN
+        </p>
+        <h2 className="text-3xl font-bold">
+          Inventario
+        </h2>
+        <p className="text-slate-500">
+          Consulta existencias y registra movimientos.
+        </p>
+      </header>
+
+      <div className="grid gap-4 sm:grid-cols-3">
+        {[
+          ["Ítems disponibles", stock],
+          ["Stock bajo", "7"],
+          ["Movimientos hoy", "18"],
+        ].map(([label, value]) => (
+          <article
+            className="rounded-2xl border bg-white p-5"
+            key={label}
+          >
+            <p className="text-sm text-slate-500">
+              {label}
+            </p>
+            <p className="mt-1 text-3xl font-bold">
+              {value}
+            </p>
+          </article>
+        ))}
+      </div>
+
+      <article className="rounded-2xl border bg-white p-6">
+        <div className="flex justify-between">
+          <h3 className="font-bold">
+            Movimiento rápido
+          </h3>
+
+          <button
+            onClick={() => setStock(stock + 1)}
+            className="rounded-lg bg-emerald-700 px-4 py-2 text-sm text-white"
+          >
+            Registrar entrada
+          </button>
+        </div>
+
+        <div className="mt-5 grid gap-3 sm:grid-cols-2">
+          <div className="rounded-xl bg-slate-50 p-4">
+            <p className="text-sm text-slate-500">
+              Sustrato
+            </p>
+            <b>
+              42 unidades
+            </b>
+          </div>
+
+          <div className="rounded-xl bg-slate-50 p-4">
+            <p className="text-sm text-slate-500">
+              Bandejas
+            </p>
+            <b>
+              128 unidades
+            </b>
+          </div>
+        </div>
+      </article>
+    </section>
+  );
+}
