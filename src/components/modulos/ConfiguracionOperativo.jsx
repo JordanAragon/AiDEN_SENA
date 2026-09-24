@@ -1,1 +1,94 @@
-import React,{useState}from"react";export default function ConfiguracionOperativo(){const u=JSON.parse(localStorage.getItem("aiden_session")||"{}");const[notice,setNotice]=useState("");return <section className="space-y-6"><header><p className="text-sm font-semibold text-emerald-700">PREFERENCIAS</p><h2 className="text-3xl font-bold">Configuración</h2><p className="text-slate-500">Gestiona tu perfil y preferencias de la aplicación.</p></header><section className="grid gap-6 lg:grid-cols-3"><article className="rounded-2xl border bg-white p-6 lg:col-span-2"><h3 className="font-bold">Perfil del usuario</h3><div className="mt-5 grid gap-4 sm:grid-cols-2"><label className="text-sm font-semibold">Nombre<input className="mt-2 w-full rounded-xl border p-3" defaultValue={u.name||"Operario"}/></label><label className="text-sm font-semibold">Correo<input className="mt-2 w-full rounded-xl border p-3" defaultValue={u.email||""}/></label></div><button onClick={()=>setNotice("Cambios guardados localmente.")} className="mt-5 rounded-xl bg-emerald-700 px-5 py-3 font-semibold text-white">Guardar cambios</button>{notice&&<p className="mt-3 text-sm text-emerald-700">{notice}</p>}</article><article className="rounded-2xl border bg-white p-6"><h3 className="font-bold">Preferencias</h3><div className="mt-5 space-y-5"><label className="flex justify-between gap-4 text-sm"><span>Notificaciones</span><input type="checkbox" defaultChecked/></label><label className="flex justify-between gap-4 text-sm"><span>Alertas operativas</span><input type="checkbox" defaultChecked/></label><label className="flex justify-between gap-4 text-sm"><span>Resumen diario</span><input type="checkbox"/></label></div></article></section></section>}
+import React, { useState } from "react";
+
+export default function ConfiguracionOperativo() {
+  const user = JSON.parse(
+    localStorage.getItem("aiden_session") || "{}"
+  );
+  const [notice, setNotice] = useState("");
+
+  return (
+    <section className="space-y-6">
+      <header>
+        <p className="text-sm font-semibold text-emerald-700">
+          PREFERENCIAS
+        </p>
+        <h2 className="text-3xl font-bold">
+          Configuración
+        </h2>
+        <p className="text-slate-500">
+          Gestiona tu perfil y preferencias de la aplicación.
+        </p>
+      </header>
+
+      <section className="grid gap-6 lg:grid-cols-3">
+        <article className="lg:col-span-2 rounded-2xl border bg-white p-6">
+          <h3 className="font-bold">
+            Perfil del usuario
+          </h3>
+
+          <div className="mt-5 grid gap-4 sm:grid-cols-2">
+            <label className="text-sm font-semibold">
+              Nombre
+              <input
+                className="mt-2 w-full rounded-xl border p-3"
+                defaultValue={user.name || "Operario"}
+              />
+            </label>
+
+            <label className="text-sm font-semibold">
+              Correo
+              <input
+                className="mt-2 w-full rounded-xl border p-3"
+                defaultValue={user.email || ""}
+              />
+            </label>
+          </div>
+
+          <button
+            onClick={() =>
+              setNotice("Cambios guardados localmente.")
+            }
+            className="mt-5 rounded-xl bg-emerald-700 px-5 py-3 font-semibold text-white"
+          >
+            Guardar cambios
+          </button>
+
+          {notice && (
+            <p className="mt-3 text-sm text-emerald-700">
+              {notice}
+            </p>
+          )}
+        </article>
+
+        <article className="rounded-2xl border bg-white p-6">
+          <h3 className="font-bold">
+            Preferencias
+          </h3>
+
+          <div className="mt-5 space-y-5">
+            <label className="flex justify-between gap-4 text-sm">
+              <span>Notificaciones</span>
+              <input
+                type="checkbox"
+                defaultChecked
+              />
+            </label>
+
+            <label className="flex justify-between gap-4 text-sm">
+              <span>Alertas operativas</span>
+              <input
+                type="checkbox"
+                defaultChecked
+              />
+            </label>
+
+            <label className="flex justify-between gap-4 text-sm">
+              <span>Resumen diario</span>
+              <input type="checkbox" />
+            </label>
+          </div>
+        </article>
+      </section>
+    </section>
+  );
+}
