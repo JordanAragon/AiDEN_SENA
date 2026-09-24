@@ -1,1 +1,54 @@
-import React from"react";export default function TrazabilidadOperativo(){const steps=["Semilla registrada","Germinación","Crecimiento","Control de calidad","Despacho"];return <section className="space-y-6"><header><p className="text-sm font-semibold text-emerald-700">SEGUIMIENTO</p><h2 className="text-3xl font-bold">Trazabilidad</h2><p className="text-slate-500">Sigue el recorrido de cada lote dentro del vivero.</p></header><article className="rounded-2xl border bg-white p-6"><div className="flex flex-wrap items-center gap-3">{steps.map((s,i)=><React.Fragment key={s}><div className="rounded-xl bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-800">{i+1}. {s}</div>{i<steps.length-1&&<span className="text-slate-300">→</span>}</React.Fragment>)}</div></article><article className="rounded-2xl border bg-white p-6"><h3 className="font-bold">Lote seleccionado</h3><p className="mt-2 text-slate-500">AID-2026-104 · Especie ornamental · Estado: crecimiento</p></article></section>}
+import React from "react";
+
+export default function TrazabilidadOperativo() {
+  const steps = [
+    "Semilla registrada",
+    "Germinación",
+    "Crecimiento",
+    "Control de calidad",
+    "Despacho",
+  ];
+
+  return (
+    <section className="space-y-6">
+      <header>
+        <p className="text-sm font-semibold text-emerald-700">
+          SEGUIMIENTO
+        </p>
+        <h2 className="text-3xl font-bold">
+          Trazabilidad
+        </h2>
+        <p className="text-slate-500">
+          Sigue el recorrido de cada lote dentro del vivero.
+        </p>
+      </header>
+
+      <article className="rounded-2xl border bg-white p-6">
+        <div className="flex flex-wrap items-center gap-3">
+          {steps.map((step, index) => (
+            <React.Fragment key={step}>
+              <div className="rounded-xl bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-800">
+                {index + 1}. {step}
+              </div>
+
+              {index < steps.length - 1 && (
+                <span className="text-slate-300">
+                  →
+                </span>
+              )}
+            </React.Fragment>
+          ))}
+        </div>
+      </article>
+
+      <article className="rounded-2xl border bg-white p-6">
+        <h3 className="font-bold">
+          Lote seleccionado
+        </h3>
+        <p className="mt-2 text-slate-500">
+          AID-2026-104 · Especie ornamental · Estado: crecimiento
+        </p>
+      </article>
+    </section>
+  );
+}
