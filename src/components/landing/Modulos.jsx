@@ -1,35 +1,44 @@
 const modules = [
-  ["Producción", "Seguimiento básico de lotes y etapas."],
-  ["Inventario", "Consulta de insumos y existencias."],
-  ["Trazabilidad", "Historial sencillo de cada lote."],
-  ["Ambiental", "Registro de condiciones del cultivo."],
-  ["Calidad", "Incidencias que necesitan seguimiento."],
-  ["Reportes", "Información resumida para tomar decisiones."],
+  ["01", "Producción", "Lotes, etapas y actividades", "Seguimiento básico de lotes y etapas.", "span"],
+  ["02", "Inventario", "Existencias y movimientos", "Consulta de insumos y existencias.", "span"],
+  ["03", "Trazabilidad", "Historia de cada lote", "Historial sencillo de cada lote.", "span"],
+  ["04", "Ambiental", "Condiciones de cultivo", "Registro de condiciones del cultivo.", "small"],
+  ["05", "Calidad", "Incidencias y seguimiento", "Situaciones que necesitan atención.", "small"],
+  ["06", "Reportes", "Lectura operativa", "Información resumida para decidir.", "small"],
 ];
 
 export default function Modulos() {
   return (
-    <section className="section" id="modulos" aria-labelledby="modules-title">
-      <section className="container">
-        <header className="section-heading">
-          <p className="section-index">02 / MÓDULOS</p>
-          <h2 id="modules-title">Lo necesario para entender <em>la operación.</em></h2>
+    <section className="aiden-modules" id="modulos">
+      <div className="aiden-shell">
+        <header className="aiden-section-header">
+          <div>
+            <p className="aiden-index">MÓDULOS</p>
+            <h2>Todo el sistema.<br /><em>Cada pieza tiene trabajo.</em></h2>
+          </div>
           <p>
-            La plataforma puede crecer, pero esta versión se concentra en una base
-            sencilla y fácil de mantener.
+            Esta versión académica conserva la lógica visual de AiDEN y reduce
+            la cantidad de áreas para concentrarse en lo esencial.
           </p>
         </header>
 
-        <section className="module-grid">
-          {modules.map(([name, description], index) => (
-            <article className="module-card" key={name}>
-              <span className="card-number">0{index + 1}</span>
+        <section className="aiden-bento">
+          {modules.map(([number, name, kind, description, size], index) => (
+            <a
+              href={index === 0 ? "#produccion" : "#roles"}
+              className={`aiden-bento-card bento-${index + 1}`}
+              key={name}
+            >
+              <span className="aiden-bento-number">{number}</span>
+              <span className="aiden-bento-icon" aria-hidden="true">↗</span>
+              <span className="aiden-bento-kind">{kind}</span>
               <h3>{name}</h3>
               <p>{description}</p>
-            </article>
+              {size === "small" && <span aria-hidden="true" />}
+            </a>
           ))}
         </section>
-      </section>
+      </div>
     </section>
   );
 }
