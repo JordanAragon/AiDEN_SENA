@@ -2,16 +2,21 @@ import { useState } from "react"
 import { Search, Plus, Users, UserCheck, Clock, Star, X, Mail, Phone } from "lucide-react"
 
 const employees = [
-  { id: "EMP-001", name, role, email, phone, dept, tasks, done, rating, status, img,
-  { id: "EMP-002", name, role, email, phone, dept, tasks, done, rating, status, img,
-  { id: "EMP-003", name, role, email, phone, dept, tasks, done, rating, status, img,
-  { id: "EMP-004", name, role, email, phone, dept, tasks, done, rating, status, img,
-  { id: "EMP-005", name, role, email, phone, dept, tasks, done, rating, status, img,
-  { id: "EMP-006", name, role, email, phone, dept, tasks, done, rating, status, img,
-  { id: "EMP-007", name, role, email, phone, dept, tasks, done, rating, status, img,
+  { id: "EMP-001", name: "Carlos Méndez", role: "supervisor", email: "c.mendez@aiden.co", phone: "+57 300 123 4567", dept: "Operaciones", tasks: 8, done: 7, rating: 4.8, status: "active", img: "CM" },
+  { id: "EMP-002", name: "Luis Torres", role: "operario", email: "l.torres@aiden.co", phone: "+57 301 234 5678", dept: "Producción", tasks: 5, done: 4, rating: 4.5, status: "active", img: "LT" },
+  { id: "EMP-003", name: "Ana Ruiz", role: "supervisor", email: "a.ruiz@aiden.co", phone: "+57 302 345 6789", dept: "Calidad", tasks: 6, done: 6, rating: 4.9, status: "active", img: "AR" },
+  { id: "EMP-004", name: "Pedro Vargas", role: "operario", email: "p.vargas@aiden.co", phone: "+57 303 456 7890", dept: "Producción", tasks: 4, done: 2, rating: 4.2, status: "active", img: "PV" },
+  { id: "EMP-005", name: "Valentina Soto", role: "operario", email: "v.soto@aiden.co", phone: "+57 304 567 8901", dept: "Ambiental", tasks: 3, done: 3, rating: 4.7, status: "active", img: "VS" },
+  { id: "EMP-006", name: "Miguel Herrera", role: "operario", email: "m.herrera@aiden.co", phone: "+57 305 678 9012", dept: "Producción", tasks: 5, done: 5, rating: 4.6, status: "vacation", img: "MH" },
+  { id: "EMP-007", name: "Daniela Castro", role: "operario", email: "d.castro@aiden.co", phone: "+57 306 789 0123", dept: "Inventario", tasks: 4, done: 1, rating: 4.0, status: "leave", img: "DC" },
 ]
 
-const roleLabel= { admin: "Administrador", supervisor, operario= { admin: "badge-red", supervisor, operario= { active: "Activo", vacation, leave= { active: "badge-green", vacation, leave= ["bg-aiden-primary", "bg-aiden-secondary", "bg-aiden-info", "bg-[#7C3AED]", "bg-[#DB2777]", "bg-[#D97706]", "bg-[#059669]"]
+const roleLabel = { admin: "Administrador", supervisor: "Supervisor", operario: "Operario" }
+const roleBadge = { admin: "badge-red", supervisor: "badge-blue", operario: "badge-green" }
+const statusLabel = { active: "Activo", vacation: "Vacaciones", leave: "Permiso" }
+const statusBadge = { active: "badge-green", vacation: "badge-blue", leave: "badge-yellow" }
+
+const avatarColors = ["bg-aiden-primary", "bg-aiden-secondary", "bg-aiden-info", "bg-[#7C3AED]", "bg-[#DB2777]", "bg-[#D97706]", "bg-[#059669]"]
 
 export default function Personnel() {
   const [search, setSearch] = useState("")
@@ -40,10 +45,10 @@ export default function Personnel() {
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
-          { label: "Total Empleados", value), icon={18} />, bg, color,
-          { label: "Activos Hoy", value=> e.status === "active").length), icon={18} />, bg, color,
-          { label: "Supervisores", value=> e.role === "supervisor").length), icon={18} />, bg, color,
-          { label: "Tareas Pendientes", value, e) => a + (e.tasks - e.done), 0)), icon={18} />, bg, color,
+          { label: "Total Empleados", value: String(employees.length), icon: <Users size={18} />, bg: "bg-aiden-light", color: "text-aiden-primary" },
+          { label: "Activos Hoy", value: String(employees.filter(e => e.status === "active").length), icon: <UserCheck size={18} />, bg: "bg-aiden-success-bg", color: "text-aiden-success" },
+          { label: "Supervisores", value: String(employees.filter(e => e.role === "supervisor").length), icon: <Star size={18} />, bg: "bg-aiden-info-bg", color: "text-aiden-info" },
+          { label: "Tareas Pendientes", value: String(employees.reduce((a, e) => a + (e.tasks - e.done), 0)), icon: <Clock size={18} />, bg: "bg-aiden-warning-bg", color: "text-aiden-warning" },
         ].map(k => (
           <div key={k.label} className="aiden-card p-4 flex items-center gap-4">
             <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${k.bg} ${k.color} shrink-0`}>{k.icon}</div>
