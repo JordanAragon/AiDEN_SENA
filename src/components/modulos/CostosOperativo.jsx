@@ -55,40 +55,40 @@ export default function Costs() {
   const totalMonth = Object.values(totalCostsMonth).filter(v => typeof v === "number").reduce((a, b) => a + (b ), 0)
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
+    <section className="space-y-6">
+      <section className="flex items-center justify-between">
+        <section>
           <h1 className="page-title">Costos</h1>
           <p className="text-sm text-aiden-muted mt-1">Dashboard financiero del vivero · Agosto 2026</p>
-        </div>
+        </section>
         <button onClick={() => setShowAdd(true)} className="aiden-btn-primary text-sm">
           <Plus size={16} />
           Nuevo Movimiento
         </button>
-      </div>
+      </section>
 
       {/* KPIs */}
-      <div className="grid grid-cols-2 xl:grid-cols-4 gap-4">
+      <section className="grid grid-cols-2 xl:grid-cols-4 gap-4">
         {[
           { label: "Costos del Mes", value: `$${(totalMonth / 1000).toFixed(0)}K`, change: "+5.2% vs. anterior", icon: <CircleDollarSign size={18} />, bg: "bg-aiden-danger-bg", color: "text-aiden-danger" },
           { label: "Ingresos del Mes", value: "$115K", change: "+18.5% vs. anterior", icon: <TrendingUp size={18} />, bg: "bg-aiden-success-bg", color: "text-aiden-success" },
           { label: "Margen Bruto", value: "40.9%", change: "Meta: 38%", icon: <TrendingUp size={18} />, bg: "bg-aiden-light", color: "text-aiden-primary" },
           { label: "Costo por Lote (prom.)", value: "$6.8K", change: "5 lotes activos", icon: <TrendingDown size={18} />, bg: "bg-aiden-info-bg", color: "text-aiden-info" },
         ].map(k => (
-          <div key={k.label} className="aiden-card p-4 flex items-center gap-4">
-            <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${k.bg} ${k.color}`}>{k.icon}</div>
-            <div>
+          <section key={k.label} className="aiden-card p-4 flex items-center gap-4">
+            <section className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${k.bg} ${k.color}`}>{k.icon}</section>
+            <section>
               <p className="text-xl font-bold text-aiden-text" style={{ fontFamily: "DM Sans, sans-serif" }}>{k.value}</p>
               <p className="text-xs text-aiden-muted">{k.label}</p>
               <p className="text-xs text-aiden-muted mt-0.5 opacity-70">{k.change}</p>
-            </div>
-          </div>
+            </section>
+          </section>
         ))}
-      </div>
+      </section>
 
       {/* Charts */}
-      <div className="grid lg:grid-cols-3 gap-6">
-        <div className="aiden-card p-5 lg:col-span-2">
+      <section className="grid lg:grid-cols-3 gap-6">
+        <section className="aiden-card p-5 lg:col-span-2">
           <p className="section-title mb-1">Costos por Categoría</p>
           <p className="text-xs text-aiden-muted mb-5">Últimos 6 meses (COP $000)</p>
           <ResponsiveContainer width="100%" height={220}>
@@ -104,12 +104,12 @@ export default function Costs() {
               <Bar dataKey="otros" stackId="a" fill="#E9F5EF" name="Otros" radius={[4, 4, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
-        </div>
+        </section>
 
-        <div className="aiden-card p-5">
+        <section className="aiden-card p-5">
           <p className="section-title mb-1">Distribución Agosto</p>
           <p className="text-xs text-aiden-muted mb-4">Total: ${(totalMonth / 1000).toFixed(0)}K</p>
-          <div className="flex justify-center mb-4">
+          <section className="flex justify-center mb-4">
             <PieChart width={160} height={160}>
               <Pie data={categoryBreakdown} cx={75} cy={75} innerRadius={45} outerRadius={70} dataKey="value" paddingAngle={3}>
                 {categoryBreakdown.map((entry, i) => (
@@ -118,21 +118,21 @@ export default function Costs() {
               </Pie>
               <Tooltip contentStyle={{ borderRadius: 8, border: "1px solid #E5EDE8", fontSize: 11 }} formatter={(v) => [`$${((v) / 1000).toFixed(0)}K`]} />
             </PieChart>
-          </div>
+          </section>
           {categoryBreakdown.map(c => (
-            <div key={c.name} className="flex items-center justify-between py-1.5 text-xs">
-              <div className="flex items-center gap-2">
-                <div className="w-2.5 h-2.5 rounded-full border border-[#C8E0D4]" style={{ background: c.color }} />
+            <section key={c.name} className="flex items-center justify-between py-1.5 text-xs">
+              <section className="flex items-center gap-2">
+                <section className="w-2.5 h-2.5 rounded-full border border-[#C8E0D4]" style={{ background: c.color }} />
                 <span className="text-aiden-muted">{c.name}</span>
-              </div>
+              </section>
               <span className="font-semibold text-aiden-text">${(c.value / 1000).toFixed(0)}K</span>
-            </div>
+            </section>
           ))}
-        </div>
-      </div>
+        </section>
+      </section>
 
       {/* Cost by lot */}
-      <div className="aiden-card p-5">
+      <section className="aiden-card p-5">
         <p className="section-title mb-5">Costo por Lote</p>
         <ResponsiveContainer width="100%" height={180}>
           <BarChart data={costByLot}>
@@ -143,13 +143,13 @@ export default function Costs() {
             <Bar dataKey="cost" fill="#0A4F31" radius={[4, 4, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
-      </div>
+      </section>
 
       {/* Movements */}
-      <div className="aiden-card overflow-hidden">
-        <div className="p-4 border-b border-[#E5EDE8] flex items-center justify-between">
+      <section className="aiden-card overflow-hidden">
+        <section className="p-4 border-b border-[#E5EDE8] flex items-center justify-between">
           <p className="section-title">Movimientos Recientes</p>
-        </div>
+        </section>
         <table className="w-full">
           <thead>
             <tr className="bg-aiden-bg border-b border-[#E5EDE8]">
@@ -175,34 +175,34 @@ export default function Costs() {
             ))}
           </tbody>
         </table>
-      </div>
+      </section>
 
       {showAdd && (
-        <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="aiden-card w-full max-w-md p-6 shadow-2xl">
-            <div className="flex items-center justify-between mb-5">
+        <section className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <section className="aiden-card w-full max-w-md p-6 shadow-2xl">
+            <section className="flex items-center justify-between mb-5">
               <p className="section-title">Nuevo Movimiento</p>
               <button onClick={() => setShowAdd(false)} className="w-7 h-7 rounded-lg hover:bg-aiden-light flex items-center justify-center"><X size={15} /></button>
-            </div>
-            <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-3">
-                <div><label className="aiden-label">Tipo</label><select className="aiden-input"><option>Gasto</option><option>Ingreso</option></select></div>
-                <div><label className="aiden-label">Categoría</label><select className="aiden-input"><option>Mano de Obra</option><option>Insumos</option><option>Servicios</option><option>Agroquímicos</option><option>Otros</option></select></div>
-              </div>
-              <div><label className="aiden-label">Descripción</label><input className="aiden-input" placeholder="Descripción del movimiento" /></div>
-              <div className="grid grid-cols-2 gap-3">
-                <div><label className="aiden-label">Monto (COP)</label><input type="number" className="aiden-input" placeholder="0" /></div>
-                <div><label className="aiden-label">Fecha</label><input type="date" className="aiden-input" /></div>
-              </div>
-              <div><label className="aiden-label">Lote (opcional)</label><select className="aiden-input"><option value="">Sin lote asociado</option><option>LT-2024-089</option><option>LT-2024-091</option></select></div>
-            </div>
-            <div className="flex gap-3 mt-6">
+            </section>
+            <section className="space-y-4">
+              <section className="grid grid-cols-2 gap-3">
+                <section><label className="aiden-label">Tipo</label><select className="aiden-input"><option>Gasto</option><option>Ingreso</option></select></section>
+                <section><label className="aiden-label">Categoría</label><select className="aiden-input"><option>Mano de Obra</option><option>Insumos</option><option>Servicios</option><option>Agroquímicos</option><option>Otros</option></select></section>
+              </section>
+              <section><label className="aiden-label">Descripción</label><input className="aiden-input" placeholder="Descripción del movimiento" /></section>
+              <section className="grid grid-cols-2 gap-3">
+                <section><label className="aiden-label">Monto (COP)</label><input type="number" className="aiden-input" placeholder="0" /></section>
+                <section><label className="aiden-label">Fecha</label><input type="date" className="aiden-input" /></section>
+              </section>
+              <section><label className="aiden-label">Lote (opcional)</label><select className="aiden-input"><option value="">Sin lote asociado</option><option>LT-2024-089</option><option>LT-2024-091</option></select></section>
+            </section>
+            <section className="flex gap-3 mt-6">
               <button onClick={() => setShowAdd(false)} className="aiden-btn-secondary flex-1 justify-center">Cancelar</button>
               <button onClick={() => setShowAdd(false)} className="aiden-btn-primary flex-1 justify-center">Guardar</button>
-            </div>
-          </div>
-        </div>
+            </section>
+          </section>
+        </section>
       )}
-    </div>
+    </section>
   )
 }
