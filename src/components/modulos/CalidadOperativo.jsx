@@ -2,17 +2,18 @@ import { useState } from "react"
 import { Plus, Search, ShieldCheck, AlertTriangle, Clock, CheckCircle2, X } from "lucide-react"
 
 const incidents = [
-  { id: "INC-2024-031", lot, title, type, sev, status, user, date, desc,
-  { id: "INC-2024-030", lot, title, type, sev, status, user, date, desc,
-  { id: "INC-2024-029", lot, title, type, sev, status, user, date, desc,
-  { id: "INC-2024-028", lot, title, type, sev, status, user, date, desc,
-  { id: "INC-2024-027", lot, title, type, sev, status, user, date, desc). Se investiga calidad del lote de semillas y temperatura de germinación." },
+  { id: "INC-2024-031", lot: "LT-2024-089", title: "Presencia de hongos en zona norte", type: "Fitosanitaria", sev: "Alta", status: "open", user: "Ana Ruiz", date: "2024-08-28", desc: "Se detecta micelio blanquecino en 3 plantas de rosa canina. Posible Botrytis cinerea. Se aplica fungicida preventivo." },
+  { id: "INC-2024-030", lot: "LT-2024-091", title: "Amarillamiento de hojas", type: "Nutricional", sev: "Media", status: "inprogress", user: "Carlos Méndez", date: "2024-08-26", desc: "Clorosis interveinal en begonias. Posible deficiencia de hierro. Se ajusta pH de sustrato a 5.8." },
+  { id: "INC-2024-029", lot: "LT-2024-080", title: "Daño por granizo en sector A", type: "Climática", sev: "Alta", status: "resolved", user: "Pedro Vargas", date: "2024-08-22", desc: "Granizo causó daño mecánico en hojas de lirio. 12 plantas afectadas. Se realizó poda de limpieza y se reubicaron." },
+  { id: "INC-2024-028", lot: "LT-2024-086", title: "Temperatura fuera de rango", type: "Ambiental", sev: "Media", status: "resolved", user: "Sistema", date: "2024-08-18", desc: "Temperatura superó 33°C por 2 horas. Sistema de ventilación activado automáticamente. Sin daño observable." },
+  { id: "INC-2024-027", lot: "LT-2024-094", title: "Germinación por debajo de lo esperado", type: "Productiva", sev: "Baja", status: "inprogress", user: "Luis Torres", date: "2024-08-15", desc: "Solo el 62% de semillas germinó (esperado 80%). Se investiga calidad del lote de semillas y temperatura de germinación." },
 ]
 
-const sevColor= { Alta: "badge-red", Media, Baja= {
-  open: { label: "Abierta", badge, icon={12} /> },
-  inprogress, badge, icon={12} /> },
-  resolved, badge, icon={12} /> },
+const sevColor = { Alta: "badge-red", Media: "badge-yellow", Baja: "badge-green" }
+const statusConfig = {
+  open: { label: "Abierta", badge: "badge-red", icon: <AlertTriangle size={12} /> },
+  inprogress: { label: "En Proceso", badge: "badge-yellow", icon: <Clock size={12} /> },
+  resolved: { label: "Resuelta", badge: "badge-green", icon: <CheckCircle2 size={12} /> },
 }
 
 export default function Quality() {
@@ -42,10 +43,10 @@ export default function Quality() {
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
-          { label: "Total Incidencias", value), icon={18} />, bg, color,
-          { label: "Abiertas", value=> i.status === "open").length), icon={18} />, bg, color,
-          { label: "En Proceso", value=> i.status === "inprogress").length), icon={18} />, bg, color,
-          { label: "Resueltas", value=> i.status === "resolved").length), icon={18} />, bg, color,
+          { label: "Total Incidencias", value: String(incidents.length), icon: <ShieldCheck size={18} />, bg: "bg-aiden-light", color: "text-aiden-primary" },
+          { label: "Abiertas", value: String(incidents.filter(i => i.status === "open").length), icon: <AlertTriangle size={18} />, bg: "bg-aiden-danger-bg", color: "text-aiden-danger" },
+          { label: "En Proceso", value: String(incidents.filter(i => i.status === "inprogress").length), icon: <Clock size={18} />, bg: "bg-aiden-warning-bg", color: "text-aiden-warning" },
+          { label: "Resueltas", value: String(incidents.filter(i => i.status === "resolved").length), icon: <CheckCircle2 size={18} />, bg: "bg-aiden-success-bg", color: "text-aiden-success" },
         ].map(k => (
           <div key={k.label} className="aiden-card p-4 flex items-center gap-4">
             <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${k.bg} ${k.color} shrink-0`}>{k.icon}</div>
