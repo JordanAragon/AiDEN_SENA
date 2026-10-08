@@ -27,7 +27,7 @@ export default function Production() {
   const statusBadge = (s) =>
     s === "active" ? "badge-green" : s === "harvest" ? "badge-blue" : "badge-gray"
 
-  const statusLabel = (s: string) =>
+  const statusLabel = (s) =>
     s === "active" ? "Activo" : s === "harvest" ? "En cosecha" : "Completado"
 
   return (
