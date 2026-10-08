@@ -5,7 +5,7 @@ import RutaProtegida from "../components/autenticacion/RutaProtegida";
 import CargandoVista from "../components/ui/CargandoVista";
 import { PERMISOS } from "./permisos";
 
-const Home = lazy(() => import("../pages/Home"));
+const Home = lazy(() => import("../pages/Home.tsx"));
 const Login = lazy(() => import("../pages/Login.tsx"));
 const Signup = lazy(() => import("../pages/Signup.tsx"));
 const ForgotPassword = lazy(() => import("../pages/ForgotPassword.tsx"));
