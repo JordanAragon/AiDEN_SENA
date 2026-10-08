@@ -1,0 +1,234 @@
+html.aiden-dark {
+  color-scheme: dark;
+}
+html.aiden-dark body {
+  background: #0b100e;
+  color: #e5e7eb;
+}
+html.aiden-dark .bg-white {
+  background-color: #121815 !important;
+}
+html.aiden-dark .bg-slate-50 {
+  background-color: #0e1411 !important;
+}
+html.aiden-dark .bg-slate-100 {
+  background-color: #18201c !important;
+}
+html.aiden-dark .border-slate-200,
+html.aiden-dark .border-slate-100 {
+  border-color: #26332d !important;
+}
+html.aiden-dark .border-\[\#E5EDE8\] {
+  border-color: #26332d !important;
+}
+html.aiden-dark .text-slate-950,
+html.aiden-dark .text-slate-900,
+html.aiden-dark .text-slate-800 {
+  color: #f1f5f3 !important;
+}
+html.aiden-dark .text-slate-700,
+html.aiden-dark .text-slate-600 {
+  color: #c5d0ca !important;
+}
+html.aiden-dark .text-slate-500,
+html.aiden-dark .text-slate-400 {
+  color: #91a098 !important;
+}
+html.aiden-dark input,
+html.aiden-dark select,
+html.aiden-dark textarea {
+  background-color: #121815 !important;
+  border-color: #314039 !important;
+  color: #e5e7eb !important;
+}
+html.aiden-dark input::placeholder,
+html.aiden-dark textarea::placeholder {
+  color: #718078 !important;
+}
+html.aiden-dark .hover\:bg-slate-50:hover,
+html.aiden-dark .hover\:bg-slate-100:hover {
+  background-color: #1a2420 !important;
+}
+html.aiden-dark .divide-slate-100 > :not([hidden]) ~ :not([hidden]) {
+  border-color: #26332d !important;
+}
+html.aiden-dark .bg-emerald-50 {
+  background-color: #123a29 !important;
+}
+html.aiden-dark .text-emerald-700,
+html.aiden-dark .text-emerald-600 {
+  color: #68d391 !important;
+}
+html.aiden-dark .hover\:bg-emerald-50:hover {
+  background-color: #16452f !important;
+}
+html.aiden-dark .bg-amber-50 {
+  background-color: #3b2f16 !important;
+}
+html.aiden-dark .text-amber-700 {
+  color: #f4c96b !important;
+}
+html.aiden-dark .bg-red-50 {
+  background-color: #3b1d22 !important;
+}
+html.aiden-dark .text-red-600 {
+  color: #f28b96 !important;
+}
+html.aiden-dark .text-red-700 {
+  color: #f28b96 !important;
+}
+html.aiden-dark .bg-emerald-700 {
+  background-color: #176b45 !important;
+}
+html.aiden-dark .hover\:bg-emerald-800:hover {
+  background-color: #1d8052 !important;
+}
+html.aiden-dark .shadow-sm,
+html.aiden-dark .shadow-xl,
+html.aiden-dark .shadow-2xl {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+}
+html.aiden-dark kbd {
+  background-color: #18201c !important;
+  border-color: #314039 !important;
+  color: #91a098 !important;
+}
+html.aiden-dark .aiden-chart-grid line {
+  stroke: #26332d !important;
+}
+html.aiden-dark .aiden-chart-axis text {
+  fill: #91a098 !important;
+}
+html.aiden-dark .aiden-tooltip {
+  background: #121815 !important;
+  border-color: #314039 !important;
+  color: #e5e7eb !important;
+}
+html.aiden-dark ::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+html.aiden-dark ::-webkit-scrollbar-track {
+  background: #0e1411;
+}
+html.aiden-dark ::-webkit-scrollbar-thumb {
+  background: #314039;
+  border-radius: 999px;
+}
+html.aiden-dark ::-webkit-scrollbar-thumb:hover {
+  background: #42554b;
+}
+@media (prefers-reduced-motion: reduce) {
+  html.aiden-dark *,
+  html.aiden-dark *::before,
+  html.aiden-dark *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* Complementos: colores que el propio AiDEN ya usaba (KPI azules, bordes
+   de alerta, barras) y que el modo oscuro no cubría. */
+html.aiden-dark .bg-sky-50 {
+  background-color: #12303d !important;
+}
+html.aiden-dark .text-sky-700 {
+  color: #7cc4e4 !important;
+}
+html.aiden-dark .border-amber-200 {
+  border-color: #5a4a22 !important;
+}
+html.aiden-dark .text-amber-900,
+html.aiden-dark .text-amber-800 {
+  color: #f4d58d !important;
+}
+html.aiden-dark .border-red-100 {
+  border-color: #4a2329 !important;
+}
+html.aiden-dark .border-emerald-200,
+html.aiden-dark .border-emerald-300 {
+  border-color: #1f5a3d !important;
+}
+html.aiden-dark .hover\:border-emerald-200:hover {
+  border-color: #2a7050 !important;
+}
+html.aiden-dark .ring-emerald-100 {
+  --tw-ring-color: #16452f !important;
+}
+html.aiden-dark .bg-emerald-100 {
+  background-color: #16452f !important;
+}
+html.aiden-dark .text-emerald-800,
+html.aiden-dark .text-emerald-900 {
+  color: #8ee0ae !important;
+}
+html.aiden-dark .hover\:text-emerald-700:hover,
+html.aiden-dark .hover\:text-emerald-800:hover {
+  color: #68d391 !important;
+}
+html.aiden-dark .bg-emerald-900 {
+  background-color: #176b45 !important;
+}
+html.aiden-dark .hover\:bg-red-50:hover {
+  background-color: #3b1d22 !important;
+}
+html.aiden-dark .border-white {
+  border-color: #121815 !important;
+}
+
+/* El body ya se oscurecía (#0b100e), pero el contenedor de la aplicación
+   conservaba #f5f7f5: tarjetas oscuras sobre fondo claro y rótulos verdes
+   ilegibles. Se extiende el mismo fondo oscuro al contenedor. */
+html.aiden-dark .aiden-app-shell {
+  --app-bg: #0b100e;
+  background-color: #0b100e !important;
+}
+html.aiden-dark .bg-\[\#f5f7f5\] {
+  background-color: #0b100e !important;
+}
+html.aiden-dark .text-amber-900\/80 {
+  color: #f4d58d !important;
+}
+html.aiden-dark .bg-white\/70,
+html.aiden-dark .hover\:bg-white:hover {
+  background-color: rgba(18, 24, 21, 0.85) !important;
+}
+html.aiden-dark .hover\:bg-emerald-50\/40:hover,
+html.aiden-dark .hover\:bg-emerald-50\/30:hover {
+  background-color: rgba(22, 69, 47, 0.45) !important;
+}
+/* Formularios de acceso: el vidrio claro quedaba con texto claro encima. */
+html.aiden-dark main[class*="bg-[#f5f7f5]"] {
+  background: #0b100e;
+}
+html.aiden-dark main[class*="bg-[#f5f7f5]"] form {
+  border-color: #26332d;
+  background: rgba(18, 24, 21, 0.9);
+}
+html.aiden-dark main[class*="bg-[#f5f7f5]"] p a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+
+/* Ajustes para el lenguaje transversal de la interfaz refinada. */
+html.aiden-dark .aiden-app-shell main thead th {
+  background: #101613 !important;
+  color: #a4b0a9 !important;
+}
+html.aiden-dark .aiden-app-shell main tbody tr:hover {
+  background-color: rgba(24, 32, 28, 0.75) !important;
+}
+html.aiden-dark .aiden-app-shell .aiden-modal-entrada > header,
+html.aiden-dark .aiden-app-shell .aiden-modal-entrada > footer {
+  background: rgba(18, 24, 21, 0.96) !important;
+  border-color: #26332d !important;
+}
+html.aiden-dark .aiden-app-shell .aiden-modal-entrada > header h2 {
+  color: #f1f5f3 !important;
+}
+html.aiden-dark .aiden-app-shell .aiden-modal-entrada > header p {
+  color: #91a098 !important;
+}
