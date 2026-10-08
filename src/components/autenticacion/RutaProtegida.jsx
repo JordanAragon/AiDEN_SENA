@@ -1,11 +1,19 @@
-import React from "react";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
+import { useSesion } from "../../hooks/useSesion";
+import { getDashboardPath, salioVoluntariamente } from "../../utilidades/autenticacion";
 
-export default function RutaProtegida({ children, roles = ["operario"] }) {
-  const session = JSON.parse(localStorage.getItem("aiden_session") || "null");
-  const role = session?.role?.toLowerCase();
-  if (!session || !roles.includes(role)) {
-    window.location.href = "/login";
-    return null;
+export default function RutaProtegida({ roles, children }) {
+  const location = useLocation();
+  const sesion = useSesion();
+
+  if (!sesion) {
+    if (salioVoluntariamente()) return <Navigate to="/login" replace />;
+    return <Navigate to="/login" replace state={{ from: `${location.pathname}${location.search}` }} />;
   }
-  return children;
+
+  if (roles && !roles.includes(sesion.role)) {
+    return <Navigate to={getDashboardPath(sesion.role)} replace />;
+  }
+
+  return children ?? <Outlet />;
 }
