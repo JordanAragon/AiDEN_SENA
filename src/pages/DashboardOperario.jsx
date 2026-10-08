@@ -24,50 +24,50 @@ export default function DashboardOperario() {
   const pct = Math.round((completed / tasks.length) * 100)
 
   return (
-    <div className="space-y-6">
-      <div>
+    <section className="space-y-6">
+      <section>
         <h1 className="page-title">Mi Panel · Operario</h1>
         <p className="text-sm text-aiden-muted mt-1">Jueves 28 de agosto, 2026 · Hola, Luis Torres</p>
-      </div>
+      </section>
 
       {/* Summary */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <section className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
           { label: "Tareas del Día", value: `${completed}/${tasks.length}`, icon: <ListChecks size={18} />, bg: "bg-aiden-light", color: "text-aiden-primary" },
           { label: "Lotes a Cargo", value: "3", icon: <Sprout size={18} />, bg: "bg-aiden-light", color: "text-aiden-secondary" },
           { label: "Pendientes", value: String(tasks.length - completed), icon: <Clock size={18} />, bg: "bg-aiden-warning-bg", color: "text-aiden-warning" },
           { label: "Incidencias", value: "1", icon: <AlertTriangle size={18} />, bg: "bg-aiden-danger-bg", color: "text-aiden-danger" },
         ].map((kpi) => (
-          <div key={kpi.label} className="aiden-card p-5">
-            <div className={`w-9 h-9 rounded-xl flex items-center justify-center mb-3 ${kpi.bg} ${kpi.color}`}>
+          <section key={kpi.label} className="aiden-card p-5">
+            <section className={`w-9 h-9 rounded-xl flex items-center justify-center mb-3 ${kpi.bg} ${kpi.color}`}>
               {kpi.icon}
-            </div>
+            </section>
             <p className="text-2xl font-bold text-aiden-text" style={{ fontFamily: "DM Sans, sans-serif" }}>
               {kpi.value}
             </p>
             <p className="text-xs text-aiden-muted mt-1">{kpi.label}</p>
-          </div>
+          </section>
         ))}
-      </div>
+      </section>
 
-      <div className="grid lg:grid-cols-5 gap-6">
+      <section className="grid lg:grid-cols-5 gap-6">
         {/* Tasks */}
-        <div className="aiden-card p-5 lg:col-span-3">
-          <div className="flex items-center justify-between mb-4">
+        <section className="aiden-card p-5 lg:col-span-3">
+          <section className="flex items-center justify-between mb-4">
             <p className="section-title">Tareas de Hoy</p>
             <span className="badge badge-green">{pct}% completado</span>
-          </div>
+          </section>
 
-          <div className="w-full bg-[#E5EDE8] rounded-full h-1.5 mb-5">
-            <div
+          <section className="w-full bg-[#E5EDE8] rounded-full h-1.5 mb-5">
+            <section
               className="bg-aiden-primary h-1.5 rounded-full transition-all"
               style={{ width: `${pct}%` }}
             />
-          </div>
+          </section>
 
-          <div className="space-y-0">
+          <section className="space-y-0">
             {tasks.map((task, i) => (
-              <div
+              <section
                 key={task.id}
                 className="flex items-start gap-3 py-3.5 border-b border-[#E5EDE8] last:border-0 cursor-pointer group"
                 onClick={() => {
@@ -76,18 +76,18 @@ export default function DashboardOperario() {
                   setTasksDone(next)
                 }}
               >
-                <div className="mt-0.5 shrink-0">
+                <section className="mt-0.5 shrink-0">
                   {tasksDone[i] ? (
                     <CheckCircle2 size={18} className="text-aiden-success" />
                   ) : (
                     <Circle size={18} className="text-[#C8E0D4] group-hover:text-aiden-secondary transition-colors" />
                   )}
-                </div>
-                <div className="flex-1 min-w-0">
+                </section>
+                <section className="flex-1 min-w-0">
                   <p className={`text-sm ${tasksDone[i] ? "line-through text-aiden-muted" : "text-aiden-text"}`}>
                     {task.title}
                   </p>
-                  <div className="flex items-center gap-3 mt-1">
+                  <section className="flex items-center gap-3 mt-1">
                     <span className="flex items-center gap-1 text-xs text-aiden-muted">
                       <Clock size={10} />
                       {task.time}
@@ -97,41 +97,41 @@ export default function DashboardOperario() {
                     >
                       {task.priority}
                     </span>
-                  </div>
-                </div>
-              </div>
+                  </section>
+                </section>
+              </section>
             ))}
-          </div>
-        </div>
+          </section>
+        </section>
 
         {/* My Lots */}
-        <div className="aiden-card p-5 lg:col-span-2">
+        <section className="aiden-card p-5 lg:col-span-2">
           <p className="section-title mb-5">Mis Lotes</p>
-          <div className="space-y-4">
+          <section className="space-y-4">
             {myLots.map((lot) => (
-              <div key={lot.code} className="p-4 rounded-xl bg-aiden-bg border border-[#E5EDE8]">
-                <div className="flex items-start justify-between mb-2">
-                  <div>
+              <section key={lot.code} className="p-4 rounded-xl bg-aiden-bg border border-[#E5EDE8]">
+                <section className="flex items-start justify-between mb-2">
+                  <section>
                     <p className="text-xs font-mono font-semibold text-aiden-primary">{lot.code}</p>
                     <p className="text-sm text-aiden-text mt-0.5">{lot.species}</p>
-                  </div>
+                  </section>
                   <span className="badge badge-green text-[10px]">{lot.stage}</span>
-                </div>
-                <div className="mt-3">
-                  <div className="flex justify-between text-xs text-aiden-muted mb-1">
+                </section>
+                <section className="mt-3">
+                  <section className="flex justify-between text-xs text-aiden-muted mb-1">
                     <span>Progreso</span>
                     <span>{lot.progress}%</span>
-                  </div>
-                  <div className="w-full bg-[#E5EDE8] rounded-full h-1.5">
-                    <div
+                  </section>
+                  <section className="w-full bg-[#E5EDE8] rounded-full h-1.5">
+                    <section
                       className="bg-aiden-primary h-1.5 rounded-full transition-all"
                       style={{ width: `${lot.progress}%` }}
                     />
-                  </div>
-                </div>
-              </div>
+                  </section>
+                </section>
+              </section>
             ))}
-          </div>
+          </section>
 
           <button
             onClick={() => navigate("/produccion")}
@@ -139,14 +139,14 @@ export default function DashboardOperario() {
           >
             Ver todos los lotes
           </button>
-        </div>
-      </div>
+        </section>
+      </section>
 
       {/* Incident */}
-      <div className="aiden-card p-5 border-l-4" style={{ borderLeftColor: "#D97706" }}>
-        <div className="flex items-start gap-3">
+      <section className="aiden-card p-5 border-l-4" style={{ borderLeftColor: "#D97706" }}>
+        <section className="flex items-start gap-3">
           <AlertTriangle size={18} className="text-aiden-warning shrink-0 mt-0.5" />
-          <div>
+          <section>
             <p className="text-sm font-semibold text-aiden-text mb-1">Incidencia abierta · Calidad</p>
             <p className="text-sm text-aiden-muted">
               Presencia de hongos detectada en lote LT-2024-089 (Rosa canina). Registrada hoy a las 10:15. Estado: <strong>En revisión</strong>.
@@ -154,9 +154,9 @@ export default function DashboardOperario() {
             <button onClick={() => navigate("/calidad")} className="text-xs text-aiden-secondary hover:text-aiden-primary font-medium mt-2 transition-colors">
               Ver incidencia →
             </button>
-          </div>
-        </div>
-      </div>
-    </div>
+          </section>
+        </section>
+      </section>
+    </section>
   )
 }
