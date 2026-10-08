@@ -2,14 +2,14 @@ import { useState } from "react"
 import { Search, Plus, Filter, Package, AlertTriangle, TrendingDown, ArrowUpDown, Edit2, Trash2, X } from "lucide-react"
 
 const items = [
-  { id: 1, code, name, cat, stock, min, unit, price, status,
-  { id: 2, code, name, cat, stock, min, unit, price, status,
-  { id: 3, code, name, cat, stock, min, unit, price, status,
-  { id: 4, code, name, cat, stock, min, unit, price, status,
-  { id: 5, code, name, cat, stock, min, unit, price, status,
-  { id: 6, code, name, cat, stock, min, unit, price, status,
-  { id: 7, code, name, cat, stock, min, unit, price, status,
-  { id: 8, code, name, cat, stock, min, unit, price, status,
+  { id: 1, code: "INV-001", name: "Sustrato Premium", cat: "Sustratos", stock: 320, min: 200, unit: "kg", price: 4200, status: "ok" },
+  { id: 2, code: "INV-002", name: "Semillas Rosa Canina", cat: "Semillas", stock: 45, min: 100, unit: "g", price: 18500, status: "low" },
+  { id: 3, code: "INV-003", name: "Fertilizante NPK 20-20-20", cat: "Fertilizantes", stock: 85, min: 50, unit: "kg", price: 7800, status: "ok" },
+  { id: 4, code: "INV-004", name: "Maceta Negra 15cm", cat: "Envases", stock: 1240, min: 500, unit: "u", price: 320, status: "ok" },
+  { id: 5, code: "INV-005", name: "Fungicida Captan 50WP", cat: "Agroquímicos", stock: 12, min: 20, unit: "kg", price: 32000, status: "critical" },
+  { id: 6, code: "INV-006", name: "Tijeras de Poda Profesional", cat: "Herramientas", stock: 8, min: 5, unit: "u", price: 45000, status: "ok" },
+  { id: 7, code: "INV-007", name: "Sustrato Perlita", cat: "Sustratos", stock: 180, min: 100, unit: "kg", price: 5600, status: "ok" },
+  { id: 8, code: "INV-008", name: "Semillas Begonia Bicolor", cat: "Semillas", stock: 22, min: 80, unit: "g", price: 24000, status: "critical" },
 ]
 
 const cats = ["Todos", "Sustratos", "Semillas", "Fertilizantes", "Envases", "Agroquímicos", "Herramientas"]
@@ -27,10 +27,10 @@ export default function Inventory() {
   })
 
   const kpis = [
-    { label: "Total Artículos", value), icon={18} />, bg, color,
-    { label: "Stock Bajo Mínimo", value=> i.status !== "ok").length), icon={18} />, bg, color,
-    { label: "Items Críticos", value=> i.status === "critical").length), icon={18} />, bg, color,
-    { label: "Valor Inventario", value, icon={18} />, bg, color,
+    { label: "Total Artículos", value: String(items.length), icon: <Package size={18} />, bg: "bg-aiden-light", color: "text-aiden-primary" },
+    { label: "Stock Bajo Mínimo", value: String(items.filter(i => i.status !== "ok").length), icon: <AlertTriangle size={18} />, bg: "bg-aiden-warning-bg", color: "text-aiden-warning" },
+    { label: "Items Críticos", value: String(items.filter(i => i.status === "critical").length), icon: <TrendingDown size={18} />, bg: "bg-aiden-danger-bg", color: "text-aiden-danger" },
+    { label: "Valor Inventario", value: "$2.4M", icon: <Package size={18} />, bg: "bg-aiden-info-bg", color: "text-aiden-info" },
   ]
 
   return (
