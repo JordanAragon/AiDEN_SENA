@@ -3,25 +3,25 @@ import { Search, GitBranch, CheckCircle2, AlertTriangle, Thermometer, Droplets, 
 
 const lots = ["LT-2024-089", "LT-2024-091", "LT-2024-094", "LT-2024-080", "LT-2024-086"]
 
-const events= {
+const events = {
   "LT-2024-089": [
-    { date: "2024-08-28", time, type, title, desc, user, icon={14} /> },
-    { date: "2024-08-25", time, type, title, desc, user, icon={14} /> },
-    { date: "2024-08-20", time, type, title, desc, user, icon={14} /> },
-    { date: "2024-08-15", time, type, title, desc, user, icon={14} /> },
-    { date: "2024-07-30", time, type, title, desc, user, icon={14} /> },
-    { date: "2024-07-10", time, type, title, desc, user, icon={14} /> },
-    { date: "2024-06-01", time, type, title, desc, user, icon={14} /> },
-    { date: "2024-05-12", time, type, title, desc).", user, icon={14} /> },
+    { date: "2024-08-28", time: "10:15", type: "quality", title: "Incidencia de calidad registrada", desc: "Presencia de hongos detectada en 3 plantas del sector norte. Tratamiento con fungicida Captan iniciado.", user: "Ana Ruiz", icon: <AlertTriangle size={14} /> },
+    { date: "2024-08-25", time: "08:30", type: "activity", title: "Riego matutino completado", desc: "Riego manual zona norte y sur. Consumo: 120L. Tiempo: 45 min.", user: "Luis Torres", icon: <Droplets size={14} /> },
+    { date: "2024-08-20", time: "14:00", type: "inspection", title: "Inspección de calidad", desc: "Inspección rutinaria. Sin novedad. 200 plantas en buen estado. Progreso etapa: 80%.", user: "Carlos Méndez", icon: <CheckCircle2 size={14} /> },
+    { date: "2024-08-15", time: "09:00", type: "activity", title: "Aplicación de fertilizante NPK", desc: "Fertilización foliar. Dosis: 2g/L. Área: total lote. Próxima aplicación: 2024-09-01.", user: "Luis Torres", icon: <FlaskConical size={14} /> },
+    { date: "2024-07-30", time: "11:30", type: "environment", title: "Alerta ambiental resuelta", desc: "Temperatura máxima de 34°C registrada. Ventilación forzada activada. Temperatura normalizada a 26°C.", user: "Sistema", icon: <Thermometer size={14} /> },
+    { date: "2024-07-10", time: "07:00", type: "activity", title: "Poda de formación", desc: "Poda de formación en 200 plantas. Herramienta: tijeras Felco. Ramas removidas desechadas.", user: "Pedro Vargas", icon: <Scissors size={14} /> },
+    { date: "2024-06-01", time: "08:00", type: "stage", title: "Inicio de etapa Floración", desc: "Lote avanzó de etapa Crecimiento a Floración. Se detectaron primeros botones florales.", user: "Carlos Méndez", icon: <Sprout size={14} /> },
+    { date: "2024-05-12", time: "07:30", type: "stage", title: "Siembra inicial del lote", desc: "Siembra de 200 semillas de Rosa canina en Invernadero A. Sustrato: Premium + Perlita (70/30).", user: "Luis Torres", icon: <Sprout size={14} /> },
   ],
 }
 
-const typeConfig= {
-  quality: { color: "#DC2626", bg, label,
-  activity, bg, label,
-  inspection, bg, label,
-  environment, bg, label,
-  stage, bg, label,
+const typeConfig = {
+  quality: { color: "#DC2626", bg: "#FEF2F2", label: "Calidad" },
+  activity: { color: "#157347", bg: "#E9F5EF", label: "Actividad" },
+  inspection: { color: "#2563EB", bg: "#EFF6FF", label: "Inspección" },
+  environment: { color: "#D97706", bg: "#FFFBEB", label: "Ambiental" },
+  stage: { color: "#0A4F31", bg: "#E9F5EF", label: "Etapa" },
 }
 
 export default function Traceability() {
@@ -104,10 +104,18 @@ export default function Traceability() {
                     <div key={i} className="relative flex gap-4 pb-6 last:pb-0">
                       <div
                         className="relative z-10 w-10 h-10 rounded-xl flex items-center justify-center shrink-0 mt-0.5"
-                        style={{ background: cfg.bg, color="flex-1 min-w-0">
+                        style={{ background: cfg.bg, color: cfg.color }}
+                      >
+                        {ev.icon}
+                      </div>
+                      <div className="flex-1 min-w-0">
                         <div className="flex items-start gap-2 flex-wrap mb-1">
                           <p className="text-sm font-semibold text-aiden-text">{ev.title}</p>
-                          <span className="badge text-[10px]" style={{ background: cfg.bg, color="text-sm text-aiden-muted leading-relaxed mb-2">{ev.desc}</p>
+                          <span className="badge text-[10px]" style={{ background: cfg.bg, color: cfg.color }}>
+                            {cfg.label}
+                          </span>
+                        </div>
+                        <p className="text-sm text-aiden-muted leading-relaxed mb-2">{ev.desc}</p>
                         <div className="flex items-center gap-3 text-xs text-aiden-muted">
                           <span className="font-medium text-aiden-primary">{ev.user}</span>
                           <span>·</span>
