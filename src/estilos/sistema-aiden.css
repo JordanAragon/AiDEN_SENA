@@ -52,7 +52,7 @@
    tarjeta pesada. */
 .aiden-rol-supervisor .aiden-supervisor-grid > article,
 .aiden-rol-supervisor .aiden-supervisor-grid > section,
-.aiden-rol-supervisor .aiden-supervisor-grid > div {
+.aiden-rol-supervisor .aiden-supervisor-grid > * {
   min-width: 0;
 }
 
