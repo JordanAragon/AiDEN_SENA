@@ -69,13 +69,13 @@ export default function DashboardAdmin() {
   ]
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
+    <section className="space-y-6">
+      <section className="flex items-center justify-between">
+        <section>
           <h1 className="page-title">Dashboard · Administrador</h1>
           <p className="text-sm text-aiden-muted mt-1">Vista general del sistema AiDEN · Agosto 2026</p>
-        </div>
-        <div className="flex gap-2">
+        </section>
+        <section className="flex gap-2">
           <button onClick={() => navigate("/configuracion")} className="aiden-btn-secondary text-sm">
             <Settings size={15} />
             Configuración
@@ -84,28 +84,28 @@ export default function DashboardAdmin() {
             <Activity size={15} />
             Reportes
           </button>
-        </div>
-      </div>
+        </section>
+      </section>
 
       {/* KPIs */}
-      <div className="grid grid-cols-2 xl:grid-cols-4 gap-4">
+      <section className="grid grid-cols-2 xl:grid-cols-4 gap-4">
         {kpis.map((kpi) => (
-          <div key={kpi.label} className="aiden-card p-5">
-            <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 ${kpi.bg} ${kpi.color}`}>
+          <section key={kpi.label} className="aiden-card p-5">
+            <section className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 ${kpi.bg} ${kpi.color}`}>
               {kpi.icon}
-            </div>
+            </section>
             <p className="text-2xl font-bold text-aiden-text" style={{ fontFamily: "DM Sans, sans-serif" }}>
               {kpi.value}
             </p>
             <p className="text-sm text-aiden-muted mt-0.5">{kpi.label}</p>
             <p className="text-xs text-aiden-muted mt-2 border-t border-[#E5EDE8] pt-2">{kpi.change}</p>
-          </div>
+          </section>
         ))}
-      </div>
+      </section>
 
       {/* Charts */}
-      <div className="grid lg:grid-cols-3 gap-6">
-        <div className="aiden-card p-5 lg:col-span-2">
+      <section className="grid lg:grid-cols-3 gap-6">
+        <section className="aiden-card p-5 lg:col-span-2">
           <p className="section-title mb-1">Ingresos vs. Costos</p>
           <p className="text-xs text-aiden-muted mb-5">Últimos 6 meses (COP)</p>
           <ResponsiveContainer width="100%" height={200}>
@@ -132,12 +132,12 @@ export default function DashboardAdmin() {
               <Area type="monotone" dataKey="costos" stroke="#DC2626" strokeWidth={2} fill="url(#gCos)" name="Costos" />
             </AreaChart>
           </ResponsiveContainer>
-        </div>
+        </section>
 
-        <div className="aiden-card p-5">
+        <section className="aiden-card p-5">
           <p className="section-title mb-1">Usuarios por Rol</p>
           <p className="text-xs text-aiden-muted mb-4">25 usuarios totales</p>
-          <div className="flex justify-center">
+          <section className="flex justify-center">
             <PieChart width={160} height={160}>
               <Pie data={roleData} cx={75} cy={75} innerRadius={45} outerRadius={70} dataKey="value" paddingAngle={3}>
                 {roleData.map((entry, i) => (
@@ -146,51 +146,51 @@ export default function DashboardAdmin() {
               </Pie>
               <Tooltip contentStyle={{ borderRadius: 8, border: "1px solid #E5EDE8", fontSize: 12 }} />
             </PieChart>
-          </div>
-          <div className="space-y-2 mt-2">
+          </section>
+          <section className="space-y-2 mt-2">
             {roleData.map((r) => (
-              <div key={r.name} className="flex items-center justify-between text-sm">
-                <div className="flex items-center gap-2">
-                  <div className="w-2.5 h-2.5 rounded-full" style={{ background: r.color === "#E9F5EF" ? "#0A4F31" : r.color, border: r.color === "#E9F5EF" ? "1px solid #C8E0D4" : "none" }} />
+              <section key={r.name} className="flex items-center justify-between text-sm">
+                <section className="flex items-center gap-2">
+                  <section className="w-2.5 h-2.5 rounded-full" style={{ background: r.color === "#E9F5EF" ? "#0A4F31" : r.color, border: r.color === "#E9F5EF" ? "1px solid #C8E0D4" : "none" }} />
                   <span className="text-aiden-muted text-xs">{r.name}</span>
-                </div>
+                </section>
                 <span className="font-medium text-aiden-text text-xs">{r.value}</span>
-              </div>
+              </section>
             ))}
-          </div>
-        </div>
-      </div>
+          </section>
+        </section>
+      </section>
 
       {/* Audit + Module Usage */}
-      <div className="grid lg:grid-cols-5 gap-6">
-        <div className="aiden-card p-5 lg:col-span-3">
-          <div className="flex items-center gap-2 mb-5">
+      <section className="grid lg:grid-cols-5 gap-6">
+        <section className="aiden-card p-5 lg:col-span-3">
+          <section className="flex items-center gap-2 mb-5">
             <Shield size={16} className="text-aiden-primary" />
             <p className="section-title">Registro de Auditoría</p>
-          </div>
-          <div className="space-y-0">
+          </section>
+          <section className="space-y-0">
             {auditLog.map((log, i) => (
-              <div key={i} className="flex gap-3 py-3 border-b border-[#E5EDE8] last:border-0">
-                <div className="w-7 h-7 rounded-full bg-aiden-light flex items-center justify-center shrink-0">
+              <section key={i} className="flex gap-3 py-3 border-b border-[#E5EDE8] last:border-0">
+                <section className="w-7 h-7 rounded-full bg-aiden-light flex items-center justify-center shrink-0">
                   <UserCheck size={13} className="text-aiden-primary" />
-                </div>
-                <div className="flex-1 min-w-0">
+                </section>
+                <section className="flex-1 min-w-0">
                   <p className="text-sm text-aiden-text">{log.action}</p>
-                  <div className="flex items-center gap-3 mt-0.5">
+                  <section className="flex items-center gap-3 mt-0.5">
                     <span className="text-xs font-medium text-aiden-primary">{log.user}</span>
                     <span className="text-xs text-aiden-muted">{log.time}</span>
-                  </div>
-                </div>
-              </div>
+                  </section>
+                </section>
+              </section>
             ))}
-          </div>
+          </section>
           <button onClick={() => navigate("/configuracion")} className="aiden-btn-secondary w-full justify-center text-xs mt-4">
             <Eye size={13} />
             Ver auditoría completa
           </button>
-        </div>
+        </section>
 
-        <div className="aiden-card p-5 lg:col-span-2">
+        <section className="aiden-card p-5 lg:col-span-2">
           <p className="section-title mb-1">Uso de Módulos</p>
           <p className="text-xs text-aiden-muted mb-5">Actividad relativa este mes</p>
           <ResponsiveContainer width="100%" height={220}>
@@ -202,8 +202,8 @@ export default function DashboardAdmin() {
               <Bar dataKey="uso" fill="#157347" radius={[0, 4, 4, 0]} />
             </BarChart>
           </ResponsiveContainer>
-        </div>
-      </div>
-    </div>
+        </section>
+      </section>
+    </section>
   )
 }
