@@ -17,42 +17,42 @@ import { TrendingUp, TrendingDown, CircleDollarSign, Plus, X } from "lucide-reac
 import { useState } from "react"
 
 const monthlyCosts = [
-  { mes: "Mar", mano_obra, insumos, servicios, otros,
-  { mes: "Abr", mano_obra, insumos, servicios, otros,
-  { mes: "May", mano_obra, insumos, servicios, otros,
-  { mes: "Jun", mano_obra, insumos, servicios, otros,
-  { mes: "Jul", mano_obra, insumos, servicios, otros,
-  { mes: "Ago", mano_obra, insumos, servicios, otros,
+  { mes: "Mar", mano_obra: 18000, insumos: 12000, servicios: 5000, otros: 3000 },
+  { mes: "Abr", mano_obra: 19000, insumos: 13500, servicios: 5200, otros: 2800 },
+  { mes: "May", mano_obra: 18500, insumos: 11800, servicios: 5100, otros: 3200 },
+  { mes: "Jun", mano_obra: 21000, insumos: 14200, servicios: 5400, otros: 3100 },
+  { mes: "Jul", mano_obra: 20000, insumos: 13000, servicios: 5300, otros: 2900 },
+  { mes: "Ago", mano_obra: 22000, insumos: 15500, servicios: 5800, otros: 3400 },
 ]
 
 const costByLot = [
-  { lot: "LT-089", cost,
-  { lot: "LT-091", cost,
-  { lot: "LT-094", cost,
-  { lot: "LT-080", cost,
-  { lot: "LT-086", cost,
+  { lot: "LT-089", cost: 8400 },
+  { lot: "LT-091", cost: 6200 },
+  { lot: "LT-094", cost: 4100 },
+  { lot: "LT-080", cost: 9800 },
+  { lot: "LT-086", cost: 5300 },
 ]
 
 const categoryBreakdown = [
-  { name: "Mano de Obra", value, color,
-  { name: "Insumos", value, color,
-  { name: "Servicios", value, color,
-  { name: "Otros", value, color,
+  { name: "Mano de Obra", value: 22000, color: "#0A4F31" },
+  { name: "Insumos", value: 15500, color: "#157347" },
+  { name: "Servicios", value: 5800, color: "#E9F5EF" },
+  { name: "Otros", value: 3400, color: "#C8E0D4" },
 ]
 
 const movements = [
-  { id: "MOV-001", date, desc, cat, lot, amount, type,
-  { id: "MOV-002", date, desc, cat, lot, amount, type,
-  { id: "MOV-003", date, desc, cat, lot, amount, type,
-  { id: "MOV-004", date, desc, cat, lot, amount, type,
-  { id: "MOV-005", date, desc, cat, lot, amount, type,
+  { id: "MOV-001", date: "2024-08-28", desc: "Compra Sustrato Premium 100kg", cat: "Insumos", lot: "LT-2024-089", amount: -420000, type: "expense" },
+  { id: "MOV-002", date: "2024-08-27", desc: "Venta Lirio Oriental 120 u", cat: "Ingresos", lot: "LT-2024-080", amount: 1440000, type: "income" },
+  { id: "MOV-003", date: "2024-08-26", desc: "Nómina semana 34 · 18 operarios", cat: "Mano de obra", lot: "—", amount: -3200000, type: "expense" },
+  { id: "MOV-004", date: "2024-08-25", desc: "Factura agua agosto · Invernadero A-B-C", cat: "Servicios", lot: "—", amount: -480000, type: "expense" },
+  { id: "MOV-005", date: "2024-08-24", desc: "Fungicida Captan 50WP 5kg", cat: "Agroquímicos", lot: "LT-2024-089", amount: -160000, type: "expense" },
 ]
 
 export default function Costs() {
   const [showAdd, setShowAdd] = useState(false)
 
   const totalCostsMonth = monthlyCosts[monthlyCosts.length - 1]
-  const totalMonth = Object.values(totalCostsMonth).filter(v => typeof v === "number").reduce((a, b) => (a ) + (b ), 0) 
+  const totalMonth = Object.values(totalCostsMonth).filter(v => typeof v === "number").reduce((a, b) => a + (b ), 0) as number
 
   return (
     <div className="space-y-6">
@@ -70,10 +70,10 @@ export default function Costs() {
       {/* KPIs */}
       <div className="grid grid-cols-2 xl:grid-cols-4 gap-4">
         {[
-          { label: "Costos del Mes", value).toFixed(0)}K`, change, icon={18} />, bg, color,
-          { label: "Ingresos del Mes", value, change, icon={18} />, bg, color,
-          { label: "Margen Bruto", value, change, icon={18} />, bg, color,
-          { label: "Costo por Lote (prom.)", value, change, icon={18} />, bg, color,
+          { label: "Costos del Mes", value: `$${(totalMonth / 1000).toFixed(0)}K`, change: "+5.2% vs. anterior", icon: <CircleDollarSign size={18} />, bg: "bg-aiden-danger-bg", color: "text-aiden-danger" },
+          { label: "Ingresos del Mes", value: "$115K", change: "+18.5% vs. anterior", icon: <TrendingUp size={18} />, bg: "bg-aiden-success-bg", color: "text-aiden-success" },
+          { label: "Margen Bruto", value: "40.9%", change: "Meta: 38%", icon: <TrendingUp size={18} />, bg: "bg-aiden-light", color: "text-aiden-primary" },
+          { label: "Costo por Lote (prom.)", value: "$6.8K", change: "5 lotes activos", icon: <TrendingDown size={18} />, bg: "bg-aiden-info-bg", color: "text-aiden-info" },
         ].map(k => (
           <div key={k.label} className="aiden-card p-4 flex items-center gap-4">
             <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${k.bg} ${k.color}`}>{k.icon}</div>
@@ -94,9 +94,9 @@ export default function Costs() {
           <ResponsiveContainer width="100%" height={220}>
             <BarChart data={monthlyCosts}>
               <CartesianGrid strokeDasharray="3 3" stroke="#E5EDE8" />
-              <XAxis dataKey="mes" tick={{ fontSize: 12, fill={false} tickLine={false} />
-              <YAxis tick={{ fontSize: 11, fill={false} tickLine={false} tickFormatter={v => `$${v / 1000}K`} />
-              <Tooltip contentStyle={{ borderRadius: 8, border, fontSize={(v) => [`$${((v ) / 1000).toFixed(0)}K`]} />
+              <XAxis dataKey="mes" tick={{ fontSize: 12, fill: "#61716A" }} axisLine={false} tickLine={false} />
+              <YAxis tick={{ fontSize: 11, fill: "#61716A" }} axisLine={false} tickLine={false} tickFormatter={v => `$${v / 1000}K`} />
+              <Tooltip contentStyle={{ borderRadius: 8, border: "1px solid #E5EDE8", fontSize: 12 }} formatter={(v) => [`$${(v / 1000).toFixed(0)}K`]} />
               <Legend iconSize={8} wrapperStyle={{ fontSize: 11 }} />
               <Bar dataKey="mano_obra" stackId="a" fill="#0A4F31" name="Mano de Obra" />
               <Bar dataKey="insumos" stackId="a" fill="#157347" name="Insumos" />
@@ -116,7 +116,7 @@ export default function Costs() {
                   <Cell key={i} fill={entry.color} stroke="none" />
                 ))}
               </Pie>
-              <Tooltip contentStyle={{ borderRadius: 8, border, fontSize={(v) => [`$${((v ) / 1000).toFixed(0)}K`]} />
+              <Tooltip contentStyle={{ borderRadius: 8, border: "1px solid #E5EDE8", fontSize: 11 }} formatter={(v: unknown) => [`$${((v as number) / 1000).toFixed(0)}K`]} />
             </PieChart>
           </div>
           {categoryBreakdown.map(c => (
@@ -137,9 +137,9 @@ export default function Costs() {
         <ResponsiveContainer width="100%" height={180}>
           <BarChart data={costByLot}>
             <CartesianGrid strokeDasharray="3 3" stroke="#E5EDE8" />
-            <XAxis dataKey="lot" tick={{ fontSize: 12, fill={false} tickLine={false} />
-            <YAxis tick={{ fontSize: 11, fill={false} tickLine={false} tickFormatter={v => `$${v}`} />
-            <Tooltip contentStyle={{ borderRadius: 8, border, fontSize={(v) => [`$${(v ).toLocaleString()}`, "Costo"]} />
+            <XAxis dataKey="lot" tick={{ fontSize: 12, fill: "#61716A" }} axisLine={false} tickLine={false} />
+            <YAxis tick={{ fontSize: 11, fill: "#61716A" }} axisLine={false} tickLine={false} tickFormatter={v => `$${v}`} />
+            <Tooltip contentStyle={{ borderRadius: 8, border: "1px solid #E5EDE8", fontSize: 12 }} formatter={(v: unknown) => [`$${(v as number).toLocaleString()}`, "Costo"]} />
             <Bar dataKey="cost" fill="#0A4F31" radius={[4, 4, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
