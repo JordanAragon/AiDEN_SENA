@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ArrowRight, Eye, EyeOff, Leaf, Loader2 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import loginImage from "../assets/imagenes/login.webp";
+const loginImage = "https://raw.githubusercontent.com/JordanAragon/AiDEN/main/src/assets/imagenes/login.webp";
 import { registrarCuenta } from "../datos/acciones";
 import { useTitulo } from "../hooks/useTitulo";
 import "../estilos/autenticacion-aiden.css";

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ArrowRight, Eye, EyeOff, Leaf, Loader2, LogOut } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import loginImage from "../assets/imagenes/login.webp";
+const loginImage = "https://raw.githubusercontent.com/JordanAragon/AiDEN/main/src/assets/imagenes/login.webp";
 import { ensureInitialUser, getDashboardPath, login, logout } from "../utilidades/autenticacion";
 import { destinoTrasLogin } from "../routes/permisos";
 import { useSesion } from "../hooks/useSesion";

@@ -3,7 +3,7 @@ import { ArrowLeft, ArrowRight, CheckCircle2, Eye, EyeOff, Leaf, Loader2 } from 
 import { Link, useNavigate } from "react-router-dom";
 import { resetPassword } from "../utilidades/autenticacion";
 import { useTitulo } from "../hooks/useTitulo";
-import loginImage from "../assets/imagenes/login.webp";
+const loginImage = "https://raw.githubusercontent.com/JordanAragon/AiDEN/main/src/assets/imagenes/login.webp";
 import "../estilos/autenticacion-aiden.css";
 
 export default function ForgotPassword() {
