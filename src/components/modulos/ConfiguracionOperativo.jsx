@@ -2,14 +2,12 @@ import { useState } from "react"
 import { User, Shield, Bell, Globe, Database, Key, Eye, EyeOff, Save } from "lucide-react"
 import { useSesion } from "../../hooks/useSesion"
 
-
-
 const auditLog = [
-  { action: "Inicio de sesión exitoso", user, time, ip,
-  { action: "Modificación de inventario INV-002", user, time, ip,
-  { action: "Creación de lote LT-2024-094", user, time, ip,
-  { action: "Exportación de reporte mensual", user, time, ip,
-  { action: "Cambio de contraseña", user, time, ip,
+  { action: "Inicio de sesión exitoso", user: "Carlos Méndez", time: "2024-08-28 08:02", ip: "192.168.1.45" },
+  { action: "Modificación de inventario INV-002", user: "Carlos Méndez", time: "2024-08-28 09:15", ip: "192.168.1.45" },
+  { action: "Creación de lote LT-2024-094", user: "Ana Ruiz", time: "2024-08-27 10:30", ip: "192.168.1.32" },
+  { action: "Exportación de reporte mensual", user: "Carlos Méndez", time: "2024-08-27 16:45", ip: "192.168.1.45" },
+  { action: "Cambio de contraseña", user: "Luis Torres", time: "2024-08-26 11:00", ip: "192.168.1.61" },
 ]
 
 export default function Settings() {
@@ -17,12 +15,12 @@ export default function Settings() {
   const [showPass, setShowPass] = useState(false)
   const role = useSesion()?.role || "supervisor"
 
-  const tabs= [
-    { id: "profile", label, icon={16} /> },
-    { id: "security", label, icon={16} /> },
-    { id: "notifications", label, icon={16} /> },
-    { id: "system", label, icon={16} /> },
-    ...(role === "admin" ? [{ id: "audit" , label, icon={16} /> }] : []),
+  const tabs = [
+    { id: "profile", label: "Perfil", icon: <User size={16} /> },
+    { id: "security", label: "Seguridad", icon: <Shield size={16} /> },
+    { id: "notifications", label: "Notificaciones", icon: <Bell size={16} /> },
+    { id: "system", label: "Sistema", icon: <Globe size={16} /> },
+    ...(role === "admin" ? [{ id: "audit", label: "Auditoría", icon: <Database size={16} /> }] : []),
   ]
 
   return (
@@ -120,12 +118,12 @@ export default function Settings() {
             <div className="aiden-card p-6 space-y-4">
               <p className="section-title">Preferencias de Notificaciones</p>
               {[
-                { label: "Alertas ambientales", desc, humedad y luminosidad fuera de rango", enabled,
-                { label: "Stock bajo mínimo", desc, enabled,
-                { label: "Incidencias de calidad", desc, enabled,
-                { label: "Actualizaciones de lotes", desc, enabled,
-                { label: "Reportes automáticos", desc, enabled,
-                { label: "Nuevos usuarios", desc, enabled,
+                { label: "Alertas ambientales", desc: "Temperatura, humedad y luminosidad fuera de rango", enabled: true },
+                { label: "Stock bajo mínimo", desc: "Cuando un artículo baja del stock mínimo configurado", enabled: true },
+                { label: "Incidencias de calidad", desc: "Nuevas incidencias registradas en el sistema", enabled: true },
+                { label: "Actualizaciones de lotes", desc: "Cambios de etapa y eventos en lotes asignados", enabled: false },
+                { label: "Reportes automáticos", desc: "Resumen semanal y mensual de operaciones", enabled: true },
+                { label: "Nuevos usuarios", desc: "Cuando se registra un nuevo usuario en el sistema", enabled: false },
               ].map((n, i) => (
                 <div key={i} className="flex items-center justify-between p-4 bg-aiden-bg rounded-xl">
                   <div>
