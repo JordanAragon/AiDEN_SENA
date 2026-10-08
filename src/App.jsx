@@ -1,19 +1,10 @@
-import Home from "./pages/Home";
-import DashboardAdmin from "./pages/DashboardAdmin";
-import DashboardSupervisor from "./pages/DashboardSupervisor";
+import Rutas from "./routes/Rutas";
+import ProveedorRetroalimentacion from "./components/ui/Proveedores";
 
-function App() {
-  const path = window.location.pathname.replace(/\/+$/, "") || "/";
-
-  if (path === "/admin") {
-    return <DashboardAdmin />;
-  }
-
-  if (path === "/supervisor") {
-    return <DashboardSupervisor />;
-  }
-
-  return <Home />;
+export default function App() {
+  return (
+    <ProveedorRetroalimentacion>
+      <Rutas />
+    </ProveedorRetroalimentacion>
+  );
 }
-
-export default App;
