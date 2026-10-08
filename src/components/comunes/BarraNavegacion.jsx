@@ -1,33 +1,54 @@
-import { useState } from "react";
-import Logo from "./Logo";
+import { useEffect, useState } from "react";
 
 export default function BarraNavegacion() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [compact, setCompact] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setCompact(window.scrollY > 18);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="site-header">
-      <nav className="container navigation" aria-label="Navegación principal">
-        <Logo />
+    <header className={`aiden-header ${compact ? "is-compact" : ""}`}>
+      <nav className="aiden-shell aiden-header-inner" aria-label="Navegación principal">
+        <a href="/" className="aiden-brand" onClick={() => setMenuOpen(false)}>
+          <span className="aiden-brand-mark" aria-hidden="true">A</span>
+          <span>AiDEN</span>
+        </a>
+
+        <div className="aiden-header-links">
+          <a href="#operacion">La operación</a>
+          <a href="#sistema">El sistema</a>
+          <a href="#modulos">Módulos</a>
+          <a href="#roles">Roles</a>
+        </div>
+
+        <div className="aiden-header-actions">
+          <a href="/admin" className="aiden-header-login">Administración</a>
+          <a href="/supervisor" className="aiden-button aiden-button-dark">Supervisión →</a>
+        </div>
+
         <button
-          className="menu-button"
           type="button"
+          className="aiden-menu"
+          aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
           aria-expanded={menuOpen}
-          aria-controls="site-menu"
           onClick={() => setMenuOpen((open) => !open)}
         >
-          {menuOpen ? "Cerrar" : "Menú"}
+          {menuOpen ? "×" : "☰"}
         </button>
+      </nav>
 
-        <ul className={`navigation-links ${menuOpen ? "is-open" : ""}`} id="site-menu">
-          <li><a href="#sistema" onClick={() => setMenuOpen(false)}>Sistema</a></li>
-          <li><a href="#modulos" onClick={() => setMenuOpen(false)}>Módulos</a></li>
-          <li><a href="#roles" onClick={() => setMenuOpen(false)}>Roles</a></li>
-          <li>
-            <a className="button button-dark" href="/admin" onClick={() => setMenuOpen(false)}>
-              Ver demo
-            </a>
-          </li>
-        </ul>
+      <nav className={`aiden-mobile-panel ${menuOpen ? "is-visible" : ""}`} aria-label="Navegación móvil">
+        <a href="#operacion" onClick={() => setMenuOpen(false)}>La operación</a>
+        <a href="#sistema" onClick={() => setMenuOpen(false)}>El sistema</a>
+        <a href="#modulos" onClick={() => setMenuOpen(false)}>Módulos</a>
+        <a href="#roles" onClick={() => setMenuOpen(false)}>Roles</a>
+        <a href="/admin" className="aiden-button aiden-button-ghost" onClick={() => setMenuOpen(false)}>Administración</a>
+        <a href="/supervisor" className="aiden-button aiden-button-dark" onClick={() => setMenuOpen(false)}>Supervisión</a>
       </nav>
     </header>
   );
