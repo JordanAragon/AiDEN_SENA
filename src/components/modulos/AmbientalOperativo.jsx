@@ -50,32 +50,32 @@ export default function Environmental() {
   ]
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
+    <section className="space-y-6">
+      <section className="flex items-center justify-between">
+        <section>
           <h1 className="page-title">Monitoreo Ambiental</h1>
           <p className="text-sm text-aiden-muted mt-1">Sensores en tiempo real · Actualización automática</p>
-        </div>
-        <div className="flex items-center gap-2">
+        </section>
+        <section className="flex items-center gap-2">
           <span className="w-2 h-2 bg-aiden-success rounded-full animate-pulse" />
           <span className="text-sm text-aiden-muted font-medium">En vivo</span>
-        </div>
-      </div>
+        </section>
+      </section>
 
       {/* Live readings */}
-      <div className="grid grid-cols-2 xl:grid-cols-4 gap-4">
+      <section className="grid grid-cols-2 xl:grid-cols-4 gap-4">
         {readingCards.map((r) => (
-          <div key={r.label} className="aiden-card p-5">
-            <div className="flex items-center justify-between mb-4">
-              <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${r.bg} ${r.color}`}>
+          <section key={r.label} className="aiden-card p-5">
+            <section className="flex items-center justify-between mb-4">
+              <section className={`w-10 h-10 rounded-xl flex items-center justify-center ${r.bg} ${r.color}`}>
                 {r.icon}
-              </div>
+              </section>
               {r.status === "alert" ? (
                 <AlertTriangle size={14} className="text-aiden-danger" />
               ) : (
                 <CheckCircle2 size={14} className="text-aiden-success" />
               )}
-            </div>
+            </section>
             <p className="text-2xl font-bold text-aiden-text" style={{ fontFamily: "DM Sans, sans-serif" }}>
               {r.value}
             </p>
@@ -83,18 +83,18 @@ export default function Environmental() {
             <p className="text-xs text-aiden-muted mt-2 border-t border-[#E5EDE8] pt-2">
               Rango ideal: {r.ideal}
             </p>
-          </div>
+          </section>
         ))}
-      </div>
+      </section>
 
       {/* Chart */}
-      <div className="aiden-card p-5">
-        <div className="flex items-center justify-between mb-5">
-          <div>
+      <section className="aiden-card p-5">
+        <section className="flex items-center justify-between mb-5">
+          <section>
             <p className="section-title">Evolución Diaria</p>
             <p className="text-xs text-aiden-muted mt-0.5">Temperatura y Humedad · Invernadero A</p>
-          </div>
-        </div>
+          </section>
+        </section>
         <ResponsiveContainer width="100%" height={250}>
           <LineChart data={hourlyData}>
             <CartesianGrid strokeDasharray="3 3" stroke="#E5EDE8" />
@@ -107,13 +107,13 @@ export default function Environmental() {
             <Line yAxisId="hum" type="monotone" dataKey="hum" stroke="#2563EB" strokeWidth={2} dot={false} name="Humedad (%)" />
           </LineChart>
         </ResponsiveContainer>
-      </div>
+      </section>
 
       {/* Sensors table */}
-      <div className="aiden-card overflow-hidden">
-        <div className="p-4 border-b border-[#E5EDE8]">
+      <section className="aiden-card overflow-hidden">
+        <section className="p-4 border-b border-[#E5EDE8]">
           <p className="section-title">Estado de Sensores</p>
-        </div>
+        </section>
         <table className="w-full">
           <thead>
             <tr className="bg-aiden-bg border-b border-[#E5EDE8]">
@@ -146,7 +146,7 @@ export default function Environmental() {
             ))}
           </tbody>
         </table>
-      </div>
-    </div>
+      </section>
+    </section>
   )
 }
