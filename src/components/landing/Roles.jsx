@@ -1,31 +1,35 @@
 const roles = [
-  ["Administrador", "Gestiona usuarios, configuración y visión general.", "/admin"],
-  ["Supervisor", "Supervisa la operación y revisa alertas.", "/supervisor"],
+  ["01", "Administrador", "Visión global", "Usuarios, configuración y control integral del sistema.", "/admin"],
+  ["02", "Supervisor", "Seguimiento", "Coordinación, incidencias y lectura de la operación.", "/supervisor"],
 ];
 
 export default function Roles() {
   return (
-    <section className="section section-dark" id="roles" aria-labelledby="roles-title">
-      <section className="container">
-        <header className="section-heading dark-heading">
-          <p className="section-index">03 / ROLES</p>
-          <h2 id="roles-title">La misma operación. <em>Dos formas de verla.</em></h2>
+    <section className="aiden-roles" id="roles">
+      <div className="aiden-shell">
+        <header className="aiden-section-header aiden-section-header-compact">
+          <div>
+            <p className="aiden-index">ROLES</p>
+            <h2>La misma operación.<br /><em>La vista que corresponde.</em></h2>
+          </div>
           <p>
-            El acceso cambia según la responsabilidad de cada persona dentro del vivero.
+            La experiencia cambia según la responsabilidad dentro del vivero,
+            sin cargar a cada perfil con el mismo nivel de información.
           </p>
         </header>
 
-        <section className="role-grid">
-          {roles.map(([name, description, href], index) => (
-            <article className="role-card" key={name}>
-              <span>0{index + 1}</span>
-              <h3>{name}</h3>
+        <div className="aiden-role-table">
+          {roles.map(([number, role, focus, description, href]) => (
+            <a href={href} className="aiden-role-row" key={role}>
+              <span className="aiden-role-number">{number}</span>
+              <h3>{role}</h3>
+              <strong>{focus}</strong>
               <p>{description}</p>
-              <a href={href}>Abrir vista →</a>
-            </article>
+              <span aria-hidden="true">↗</span>
+            </a>
           ))}
-        </section>
-      </section>
+        </div>
+      </div>
     </section>
   );
 }
