@@ -1025,7 +1025,7 @@ img  {
   width:1px;
   background:var(--borde);
 }
-.timeline-producto > div  {
+.timeline-producto > *  {
   position:relative;
   display:grid;
   grid-template-columns:15px 1fr;

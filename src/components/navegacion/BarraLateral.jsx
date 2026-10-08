@@ -1,218 +1,108 @@
-import { useEffect, useMemo, useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
 import {
+  LayoutDashboard,
+  Package,
+  Sprout,
+  GitBranch,
+  Thermometer,
+  ShieldCheck,
+  CircleDollarSign,
+  Users,
   BarChart3,
-  BrainCircuit,
+  Settings,
   ChevronLeft,
   ChevronRight,
-  CircleDollarSign,
-  GitBranch,
-  LayoutDashboard,
   Leaf,
-  Menu,
-  Moon,
-  Package,
-  Settings,
-  ShieldCheck,
-  Sprout,
-  Sun,
-  Thermometer,
-  Users,
-  X,
-} from "lucide-react";
-import { getDashboardPath } from "../../utilidades/autenticacion";
-import { useSesion } from "../../hooks/useSesion";
-import { useDatos } from "../../datos/almacen";
-import { alertas as calcularAlertas } from "../../datos/selectores";
+} from "lucide-react"
+import { useNavigate, useLocation } from "react-router-dom"
+import { useState } from "react"
+import { useSesion } from "../../hooks/useSesion"
 
 const navItems = [
-  { label: "Dashboard", path: "/dashboard-admin", icon: <LayoutDashboard size={18} />, roles: ["admin", "supervisor", "operario"] },
-  { label: "Producción", path: "/produccion", icon: <Sprout size={18} />, roles: ["admin", "supervisor", "operario"] },
-  { label: "Trazabilidad", path: "/trazabilidad", icon: <GitBranch size={18} />, roles: ["admin", "supervisor", "operario"] },
-  { label: "Ambiental", path: "/ambiental", icon: <Thermometer size={18} />, roles: ["admin", "supervisor", "operario"] },
-  { label: "Calidad", path: "/calidad", icon: <ShieldCheck size={18} />, roles: ["admin", "supervisor", "operario"] },
-  { label: "Inventario", path: "/inventario", icon: <Package size={18} />, roles: ["admin", "supervisor"] },
-  { label: "Costos", path: "/costos", icon: <CircleDollarSign size={18} />, roles: ["admin", "supervisor"] },
-  { label: "Personal", path: "/personal", icon: <Users size={18} />, roles: ["admin", "supervisor"] },
-  { label: "Inteligencia", path: "/ia", icon: <BrainCircuit size={18} />, roles: ["admin", "supervisor"] },
-  { label: "Reportes", path: "/reportes", icon: <BarChart3 size={18} />, roles: ["admin", "supervisor"] },
-  { label: "Configuración", path: "/configuracion", icon: <Settings size={18} />, roles: ["admin"] },
-];
+  { label: "Dashboard", page: "/dashboard-supervisor", icon: <LayoutDashboard size={18} /> },
+  { label: "Inventario", page: "/inventario", icon: <Package size={18} /> },
+  { label: "Producción", page: "/produccion", icon: <Sprout size={18} /> },
+  { label: "Trazabilidad", page: "/trazabilidad", icon: <GitBranch size={18} /> },
+  { label: "Ambiental", page: "/ambiental", icon: <Thermometer size={18} /> },
+  { label: "Calidad", page: "/calidad", icon: <ShieldCheck size={18} /> },
+  { label: "Costos", page: "/costos", icon: <CircleDollarSign size={18} />, notOperario: true },
+  { label: "Personal", page: "/personal", icon: <Users size={18} />, notOperario: true },
+  { label: "Reportes", page: "/reportes", icon: <BarChart3 size={18} />, notOperario: true },
+  { label: "Configuración", page: "/configuracion", icon: <Settings size={18} /> },
+]
 
-const roleLabel = {
-  admin: "Administrador",
-  supervisor: "Supervisor",
-  operario: "Operario",
-};
+function getDashboardPath(role) {
+  if (role === "admin") return "/dashboard-admin"
+  if (role === "operario") return "/dashboard-operario"
+  return "/dashboard-supervisor"
+}
 
 export default function BarraLateral() {
-  const [colapsado, setColapsado] = useState(
-    () => localStorage.getItem("aiden-sidebar") === "collapsed",
-  );
-  const [oscuro, setOscuro] = useState(
-    () => localStorage.getItem("aiden-theme") === "dark",
-  );
-  const [movilAbierto, setMovilAbierto] = useState(false);
-  const location = useLocation();
-  const session = useSesion();
-  const datos = useDatos();
-  const role = session?.role || "operario";
-  const conteos = useMemo(() => {
-    const lista = calcularAlertas(datos, session);
-    const cuenta = (tipo) => lista.filter((alerta) => alerta.tipo === tipo).length;
-    return { "/calidad": cuenta("Calidad"), "/ambiental": cuenta("Ambiental"), "/inventario": cuenta("Inventario") };
-  }, [datos, session]);
-  const pathDashboard = getDashboardPath(role);
-  const visible = useMemo(
-    () => navItems.filter((item) => item.roles.includes(role)),
-    [role],
-  );
+  const navigate = useNavigate()
+  const location = useLocation()
+  const sesion = useSesion()
+  const role = sesion?.role || "supervisor"
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
 
-  useEffect(() => {
-    document.documentElement.classList.toggle("aiden-dark", oscuro);
-    localStorage.setItem("aiden-theme", oscuro ? "dark" : "light");
-  }, [oscuro]);
-
-  useEffect(() => {
-    localStorage.setItem("aiden-sidebar", colapsado ? "collapsed" : "expanded");
-  }, [colapsado]);
-
-  useEffect(() => {
-    if (!movilAbierto) return undefined;
-    const key = (event) => {
-      if (event.key === "Escape") setMovilAbierto(false);
-    };
-    window.addEventListener("keydown", key);
-    return () => window.removeEventListener("keydown", key);
-  }, [movilAbierto]);
-
-  const renderNav = (mobile = false) => (
-    <nav aria-label="Menú principal" className="flex-1 overflow-y-auto px-3 py-4">
-      <ul className="space-y-1">
-        {visible.map((item) => {
-          const targetPath = item.label === "Dashboard" ? pathDashboard : item.path;
-          const isActive = location.pathname === targetPath || (item.label === "Dashboard" && location.pathname.startsWith("/dashboard-"));
-          return (
-            <li key={item.label}>
-              <NavLink
-                to={targetPath}
-                title={!mobile && colapsado ? item.label : undefined}
-                onClick={() => mobile && setMovilAbierto(false)}
-                className={`relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition-colors ${!mobile && colapsado ? "justify-center" : "justify-start"} ${isActive ? "bg-emerald-50 font-semibold text-emerald-800" : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"}`}
-              >
-                {item.icon}
-                {(mobile || !colapsado) && <span className="flex-1">{item.label}</span>}
-                {conteos[item.path] > 0 &&
-                  (!mobile && colapsado ? (
-                    <span className="absolute right-2 top-1.5 h-2 w-2 rounded-full bg-red-500">
-                      <span className="sr-only">{conteos[item.path]} alertas</span>
-                    </span>
-                  ) : (
-                    <span className="min-w-4 rounded-full bg-red-500 px-1.5 text-center text-[10px] font-bold leading-4 text-white">
-                      {conteos[item.path]}
-                      <span className="sr-only"> alertas</span>
-                    </span>
-                  ))}
-              </NavLink>
-            </li>
-          );
-        })}
-      </ul>
-    </nav>
-  );
+  const dashboardPage = getDashboardPath(role)
+  const isDashboardActive = ["/dashboard-admin", "/dashboard-supervisor", "/dashboard-operario"].includes(location.pathname)
+  const filteredItems = navItems.filter((item) => !(item.notOperario && role === "operario"))
 
   return (
-    <>
-      <button
-        type="button"
-        className="no-imprimir fixed left-3 top-3 z-50 flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 shadow-lg lg:hidden"
-        aria-label="Abrir menú de navegación"
-        aria-expanded={movilAbierto}
-        onClick={() => setMovilAbierto(true)}
-      >
-        <Menu size={19} />
-      </button>
+    <aside
+      style={{
+        width: sidebarCollapsed ? 64 : 240,
+        minWidth: sidebarCollapsed ? 64 : 240,
+        transition: "width 0.2s ease, min-width 0.2s ease",
+      }}
+      className="flex flex-col bg-white border-r border-[#E5EDE8] h-full relative"
+    >
+      <section className="flex items-center px-4 py-4 border-b border-[#E5EDE8]" style={{ height: 64, minHeight: 64 }}>
+        <section className="flex items-center gap-2">
+          <section className="w-8 h-8 bg-aiden-primary rounded-lg flex items-center justify-center">
+            <Leaf size={16} className="text-white" />
+          </section>
+          {!sidebarCollapsed && (
+            <span className="font-display font-bold text-aiden-primary text-lg tracking-tight" style={{ fontFamily: "DM Sans, sans-serif" }}>
+              AiDEN
+            </span>
+          )}
+        </section>
+      </section>
 
-      {movilAbierto && (
-        <button
-          type="button"
-          aria-label="Cerrar menú"
-          className="fixed inset-0 z-40 bg-slate-950/30 lg:hidden"
-          onClick={() => setMovilAbierto(false)}
-        />
+      <nav className="flex-1 px-3 py-4 space-y-0.5 overflow-y-auto">
+        {filteredItems.map((item) => {
+          const isActive = item.label === "Dashboard" ? isDashboardActive : location.pathname === item.page
+          return (
+            <button
+              key={item.page}
+              onClick={() => navigate(item.label === "Dashboard" ? dashboardPage : item.page)}
+              className={`sidebar-item w-full text-left ${isActive ? "active" : ""}`}
+              style={{ justifyContent: sidebarCollapsed ? "center" : "flex-start" }}
+              title={sidebarCollapsed ? item.label : undefined}
+            >
+              <span className="shrink-0">{item.icon}</span>
+              {!sidebarCollapsed && <span>{item.label}</span>}
+            </button>
+          )
+        })}
+      </nav>
+
+      {!sidebarCollapsed && (
+        <section className="px-3 py-4 border-t border-[#E5EDE8]">
+          <section className="rounded-lg bg-aiden-light p-3">
+            <p className="text-xs font-medium text-aiden-primary mb-1">Rol activo</p>
+            <p className="text-xs text-aiden-muted capitalize">{role}</p>
+          </section>
+        </section>
       )}
 
-      <aside
-        aria-label="Navegación de AiDEN"
-        className={`no-imprimir fixed inset-y-0 left-0 z-50 flex w-[min(84vw,300px)] flex-col border-r border-[#dfe8e2] bg-white shadow-2xl transition-transform duration-200 ease-out lg:static lg:z-auto lg:shadow-none ${movilAbierto ? "translate-x-0" : "-translate-x-full lg:translate-x-0"} ${colapsado ? "lg:w-16" : "lg:w-60"}`}
+      <button
+        onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+        className="absolute -right-3 top-20 w-6 h-6 bg-white border border-[#E5EDE8] rounded-full flex items-center justify-center shadow-sm hover:bg-aiden-light transition-colors z-10"
+        aria-label={sidebarCollapsed ? "Expandir navegación" : "Contraer navegación"}
       >
-        <header className="flex h-16 min-h-[64px] items-center border-b border-[#dfe8e2] px-4">
-          <section className="w-full">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-800 text-white">
-                  <Leaf size={16} aria-hidden="true" />
-                </span>
-                {(movilAbierto || !colapsado) && (
-                  <span className="text-lg font-bold tracking-tight text-emerald-800">
-                    AiDEN
-                  </span>
-                )}
-              </div>
-              <button
-                type="button"
-                className="rounded-lg p-2 text-slate-400 hover:bg-slate-100 lg:hidden"
-                aria-label="Cerrar menú"
-                onClick={() => setMovilAbierto(false)}
-              >
-                <X size={18} />
-              </button>
-            </div>
-            {(movilAbierto || !colapsado) && (
-              <p className="ml-10 mt-0.5 text-[10px] font-medium text-slate-500">
-                {roleLabel[role]}
-              </p>
-            )}
-          </section>
-        </header>
-
-        <div className="hidden min-w-0 flex-1 lg:flex">{renderNav()}</div>
-        <div className="flex min-w-0 flex-1 lg:hidden">{renderNav(true)}</div>
-
-        <footer className="border-t border-slate-100 p-3">
-          <button
-            type="button"
-            onClick={() => setOscuro((value) => !value)}
-            title={
-              !movilAbierto && colapsado
-                ? oscuro
-                  ? "Modo claro"
-                  : "Modo oscuro"
-                : undefined
-            }
-            className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-slate-500 hover:bg-slate-50 ${!movilAbierto && colapsado ? "justify-center" : ""}`}
-            aria-label={oscuro ? "Activar modo claro" : "Activar modo oscuro"}
-          >
-            {oscuro ? <Sun size={18} /> : <Moon size={18} />}
-            {(movilAbierto || !colapsado) && (
-              <span>{oscuro ? "Modo claro" : "Modo oscuro"}</span>
-            )}
-          </button>
-        </footer>
-
-        <button
-          type="button"
-          onClick={() => setColapsado((value) => !value)}
-          className="absolute -right-3 top-20 z-10 hidden h-6 w-6 items-center justify-center rounded-full border border-[#dfe8e2] bg-white shadow-sm hover:bg-slate-50 lg:flex"
-          aria-label={colapsado ? "Expandir barra lateral" : "Colapsar barra lateral"}
-        >
-          {colapsado ? (
-            <ChevronRight size={12} className="text-slate-500" />
-          ) : (
-            <ChevronLeft size={12} className="text-slate-500" />
-          )}
-        </button>
-      </aside>
-    </>
-  );
+        {sidebarCollapsed ? <ChevronRight size={12} className="text-aiden-muted" /> : <ChevronLeft size={12} className="text-aiden-muted" />}
+      </button>
+    </aside>
+  )
 }

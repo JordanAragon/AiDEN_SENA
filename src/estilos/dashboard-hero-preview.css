@@ -350,7 +350,7 @@
   color: #63794f;
 }
 .aiden-live-preview .aiden-live-alert strong,
-.aiden-live-preview .aiden-live-alert div span  {
+.aiden-live-preview .aiden-live-alert section span  {
   display: block;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -360,7 +360,7 @@
   color: #38483d;
   font-size: 9px;
 }
-.aiden-live-preview .aiden-live-alert div span  {
+.aiden-live-preview .aiden-live-alert section span  {
   margin-top: 2px;
   color: #788176;
   font-size: 8px;

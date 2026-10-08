@@ -5,28 +5,28 @@ import RutaProtegida from "../components/autenticacion/RutaProtegida";
 import CargandoVista from "../components/ui/CargandoVista";
 import { PERMISOS } from "./permisos";
 
-const Home = lazy(() => import("../pages/Home.tsx"));
-const Login = lazy(() => import("../pages/Login.tsx"));
-const Signup = lazy(() => import("../pages/Signup.tsx"));
-const ForgotPassword = lazy(() => import("../pages/ForgotPassword.tsx"));
+const Home = lazy(() => import("../pages/Home.jsx"));
+const Login = lazy(() => import("../pages/Login.jsx"));
+const Signup = lazy(() => import("../pages/Signup.jsx"));
+const ForgotPassword = lazy(() => import("../pages/ForgotPassword.jsx"));
 const InformacionLegal = lazy(() => import("../pages/InformacionLegal"));
 const NoEncontrada = lazy(() => import("../pages/NoEncontrada"));
 const Perfil = lazy(() => import("../pages/Perfil"));
-const DashboardAdmin = lazy(() => import("../pages/DashboardAdmin.tsx"));
-const DashboardSupervisor = lazy(() => import("../pages/DashboardSupervisor.tsx"));
-const DashboardOperario = lazy(() => import("../pages/DashboardOperario.tsx"));
+const DashboardAdmin = lazy(() => import("../pages/DashboardAdmin.jsx"));
+const DashboardSupervisor = lazy(() => import("../pages/DashboardSupervisor.jsx"));
+const DashboardOperario = lazy(() => import("../pages/DashboardOperario.jsx"));
 const InteligenciaArtificial = lazy(() => import("../pages/InteligenciaArtificial"));
-const InventarioOperativo = lazy(() => import("../components/inventario/InventarioOperativo.tsx"));
-const ProduccionOperativo = lazy(() => import("../components/produccion/ProduccionOperativo.tsx"));
-const PersonalOperativo = lazy(() => import("../components/modulos/PersonalOperativo.tsx"));
-const CostosOperativo = lazy(() => import("../components/modulos/CostosOperativo.tsx"));
-const CalidadOperativo = lazy(() => import("../components/modulos/CalidadOperativo.tsx"));
-const AmbientalOperativo = lazy(() => import("../components/modulos/AmbientalOperativo.tsx"));
-const TrazabilidadOperativo = lazy(() => import("../components/modulos/TrazabilidadOperativo.tsx"));
-const ConfiguracionOperativo = lazy(() => import("../components/modulos/ConfiguracionOperativo.tsx"));
-const ReportesOperativo = lazy(() => import("../components/reportes/ReportesOperativo.tsx"));
+const InventarioOperativo = lazy(() => import("../components/inventario/InventarioOperativo.jsx"));
+const ProduccionOperativo = lazy(() => import("../components/produccion/ProduccionOperativo.jsx"));
+const PersonalOperativo = lazy(() => import("../components/modulos/PersonalOperativo.jsx"));
+const CostosOperativo = lazy(() => import("../components/modulos/CostosOperativo.jsx"));
+const CalidadOperativo = lazy(() => import("../components/modulos/CalidadOperativo.jsx"));
+const AmbientalOperativo = lazy(() => import("../components/modulos/AmbientalOperativo.jsx"));
+const TrazabilidadOperativo = lazy(() => import("../components/modulos/TrazabilidadOperativo.jsx"));
+const ConfiguracionOperativo = lazy(() => import("../components/modulos/ConfiguracionOperativo.jsx"));
+const ReportesOperativo = lazy(() => import("../components/reportes/ReportesOperativo.jsx"));
 
-const DesignSystem = lazy(() => import("../pages/DesignSystem.tsx"));
+const DesignSystem = lazy(() => import("../pages/DesignSystem.jsx"));
 
 const VISTAS = {
   "/perfil": Perfil,

@@ -50,21 +50,21 @@ export default function Reports() {
   })
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
+    <section className="space-y-6">
+      <section className="flex items-center justify-between">
+        <section>
           <h1 className="page-title">Reportes</h1>
           <p className="text-sm text-aiden-muted mt-1">Biblioteca de reportes analíticos y exportación</p>
-        </div>
+        </section>
         <button className="aiden-btn-secondary text-sm">
           <Download size={16} />
           Exportar Selección
         </button>
-      </div>
+      </section>
 
       {/* Chart row */}
-      <div className="grid lg:grid-cols-2 gap-6">
-        <div className="aiden-card p-5">
+      <section className="grid lg:grid-cols-2 gap-6">
+        <section className="aiden-card p-5">
           <p className="section-title mb-1">Producción vs. Objetivo</p>
           <p className="text-xs text-aiden-muted mb-5">Lotes activos por mes</p>
           <ResponsiveContainer width="100%" height={200}>
@@ -77,9 +77,9 @@ export default function Reports() {
               <Line type="monotone" dataKey="objetivo" stroke="#C8E0D4" strokeWidth={2} strokeDasharray="4 4" name="Objetivo" dot={false} />
             </LineChart>
           </ResponsiveContainer>
-        </div>
+        </section>
 
-        <div className="aiden-card p-5">
+        <section className="aiden-card p-5">
           <p className="section-title mb-1">Incidencias por Tipo</p>
           <p className="text-xs text-aiden-muted mb-5">Acumulado agosto 2024</p>
           <ResponsiveContainer width="100%" height={200}>
@@ -91,42 +91,42 @@ export default function Reports() {
               <Bar dataKey="value" fill="#157347" radius={[4, 4, 0, 0]} name="Incidencias" />
             </BarChart>
           </ResponsiveContainer>
-        </div>
-      </div>
+        </section>
+      </section>
 
       {/* Filters */}
-      <div className="flex flex-wrap gap-3">
-        <div className="relative flex-1 min-w-48">
+      <section className="flex flex-wrap gap-3">
+        <section className="relative flex-1 min-w-48">
           <Filter size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-aiden-muted" />
           <input className="aiden-input pl-9 text-sm" placeholder="Buscar reporte..." value={search} onChange={e => setSearch(e.target.value)} style={{ padding: "0.45rem 0.875rem 0.45rem 2rem" }} />
-        </div>
-        <div className="flex gap-1 flex-wrap">
+        </section>
+        <section className="flex gap-1 flex-wrap">
           {cats.map(c => (
             <button key={c} onClick={() => setCatFilter(c)} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${catFilter === c ? "bg-aiden-primary text-white" : "bg-aiden-light text-aiden-muted hover:text-aiden-primary"}`}>{c}</button>
           ))}
-        </div>
-      </div>
+        </section>
+      </section>
 
-      <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-4">
+      <section className="grid sm:grid-cols-2 xl:grid-cols-3 gap-4">
         {filtered.map(r => (
-          <div key={r.id} className="aiden-card p-5 hover:shadow-md hover:-translate-y-0.5 transition-all group cursor-pointer">
-            <div className="flex items-start gap-4 mb-4">
-              <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${r.color}`}>
+          <section key={r.id} className="aiden-card p-5 hover:shadow-md hover:-translate-y-0.5 transition-all group cursor-pointer">
+            <section className="flex items-start gap-4 mb-4">
+              <section className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${r.color}`}>
                 {r.icon}
-              </div>
-              <div className="flex-1 min-w-0">
+              </section>
+              <section className="flex-1 min-w-0">
                 <p className="text-sm font-semibold text-aiden-text">{r.name}</p>
                 <span className="badge badge-gray text-[10px] mt-1">{r.cat}</span>
-              </div>
-            </div>
+              </section>
+            </section>
             <p className="text-xs text-aiden-muted leading-relaxed mb-4">{r.desc}</p>
-            <div className="flex items-center justify-between">
-              <div className="text-xs text-aiden-muted">
+            <section className="flex items-center justify-between">
+              <section className="text-xs text-aiden-muted">
                 <span>{r.views} visualizaciones</span>
                 <span className="mx-1.5">·</span>
                 <span>{r.date}</span>
-              </div>
-              <div className="flex gap-1">
+              </section>
+              <section className="flex gap-1">
                 <button className="aiden-btn-secondary text-xs px-2.5 py-1.5 gap-1">
                   <Download size={12} />
                   PDF
@@ -135,11 +135,11 @@ export default function Reports() {
                   <Download size={12} />
                   Excel
                 </button>
-              </div>
-            </div>
-          </div>
+              </section>
+            </section>
+          </section>
         ))}
-      </div>
-    </div>
+      </section>
+    </section>
   )
 }

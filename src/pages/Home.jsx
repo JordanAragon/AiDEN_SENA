@@ -38,21 +38,21 @@ export default function Landing() {
 
   const roles = [
     {
-      role: "admin" as const,
+      role: "admin",
       title: "Administrador",
       color: "#0A4F31",
       bg: "#E9F5EF",
       features: ["Gestión de usuarios y roles", "Auditoría completa del sistema", "Configuración avanzada", "Acceso a todos los módulos", "Reportes estratégicos"],
     },
     {
-      role: "supervisor" as const,
+      role: "supervisor",
       title: "Supervisor",
       color: "#157347",
       bg: "#F0FDF4",
       features: ["Dashboard operativo completo", "Gestión de lotes y producción", "Control de inventario", "Monitoreo ambiental", "Incidencias de calidad"],
     },
     {
-      role: "operario" as const,
+      role: "operario",
       title: "Operario",
       color: "#2563EB",
       bg: "#EFF6FF",
@@ -61,28 +61,28 @@ export default function Landing() {
   ]
 
   return (
-    <div className="min-h-full bg-white font-sans">
+    <section className="min-h-full bg-white font-sans">
       {/* Navbar */}
       <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-[#E5EDE8]">
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-aiden-primary rounded-lg flex items-center justify-center">
+        <section className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+          <section className="flex items-center gap-2">
+            <section className="w-8 h-8 bg-aiden-primary rounded-lg flex items-center justify-center">
               <Leaf size={16} className="text-white" />
-            </div>
+            </section>
             <span className="font-bold text-aiden-primary text-xl tracking-tight" style={{ fontFamily: "DM Sans, sans-serif" }}>
               AiDEN
             </span>
-          </div>
+          </section>
 
-          <div className="hidden md:flex items-center gap-8">
+          <section className="hidden md:flex items-center gap-8">
             {["Inicio", "¿Qué es?", "Módulos", "Acceso"].map((item) => (
               <a key={item} href="#" className="text-sm font-medium text-aiden-muted hover:text-aiden-primary transition-colors">
                 {item}
               </a>
             ))}
-          </div>
+          </section>
 
-          <div className="hidden md:flex items-center gap-3">
+          <section className="hidden md:flex items-center gap-3">
             <button
               onClick={() => navigate("/login")}
               className="aiden-btn-secondary text-sm px-4 py-2"
@@ -95,7 +95,7 @@ export default function Landing() {
             >
               Registrarse
             </button>
-          </div>
+          </section>
 
           <button
             className="md:hidden p-2 rounded-lg hover:bg-aiden-light"
@@ -103,37 +103,37 @@ export default function Landing() {
           >
             {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
-        </div>
+        </section>
 
         {mobileMenuOpen && (
-          <div className="md:hidden px-6 pb-4 border-t border-[#E5EDE8] pt-4 space-y-2">
+          <section className="md:hidden px-6 pb-4 border-t border-[#E5EDE8] pt-4 space-y-2">
             {["Inicio", "¿Qué es?", "Módulos", "Acceso"].map((item) => (
               <a key={item} href="#" className="block py-2 text-sm text-aiden-muted hover:text-aiden-primary">
                 {item}
               </a>
             ))}
-            <div className="flex gap-3 pt-2">
+            <section className="flex gap-3 pt-2">
               <button onClick={() => navigate("/login")} className="aiden-btn-secondary flex-1 justify-center">
                 Iniciar Sesión
               </button>
               <button onClick={() => navigate("/signup")} className="aiden-btn-primary flex-1 justify-center">
                 Registrarse
               </button>
-            </div>
-          </div>
+            </section>
+          </section>
         )}
       </nav>
 
       {/* Hero */}
       <section className="bg-aiden-bg">
-        <div className="max-w-7xl mx-auto px-6 pt-20 pb-16">
-          <div className="inline-flex items-center gap-2 bg-aiden-light border border-aiden-border px-3 py-1.5 rounded-full mb-8">
+        <section className="max-w-7xl mx-auto px-6 pt-20 pb-16">
+          <section className="inline-flex items-center gap-2 bg-aiden-light border border-aiden-border px-3 py-1.5 rounded-full mb-8">
             <span className="w-2 h-2 bg-aiden-secondary rounded-full animate-pulse" />
             <span className="text-xs font-medium text-aiden-primary">ERP Vivero Inteligente · v2.0</span>
-          </div>
+          </section>
 
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
+          <section className="grid lg:grid-cols-2 gap-16 items-center">
+            <section>
               <h1
                 className="text-5xl font-bold text-aiden-text leading-[1.1] mb-6"
                 style={{ fontFamily: "DM Sans, sans-serif" }}
@@ -147,7 +147,7 @@ export default function Landing() {
                 Toda la gestión de tu vivero agrícola en una plataforma moderna e inteligente.
               </p>
 
-              <div className="flex flex-wrap gap-3 mb-12">
+              <section className="flex flex-wrap gap-3 mb-12">
                 <button
                   onClick={() => navigate("/login")}
                   className="aiden-btn-primary px-6 py-3 text-sm"
@@ -167,67 +167,67 @@ export default function Landing() {
                 >
                   Explorar Módulos ↓
                 </button>
-              </div>
+              </section>
 
-              <div className="grid grid-cols-3 gap-6">
+              <section className="grid grid-cols-3 gap-6">
                 {[
                   { value: "3", label: "Roles Demo" },
                   { value: "9", label: "Módulos Operativos" },
                   { value: "ERP", label: "Vivero Inteligente" },
                 ].map((m) => (
-                  <div key={m.label}>
+                  <section key={m.label}>
                     <p className="text-2xl font-bold text-aiden-primary" style={{ fontFamily: "DM Sans, sans-serif" }}>
                       {m.value}
                     </p>
                     <p className="text-sm text-aiden-muted mt-1">{m.label}</p>
-                  </div>
+                  </section>
                 ))}
-              </div>
-            </div>
+              </section>
+            </section>
 
-            <div className="relative">
-              <div className="aiden-card overflow-hidden rounded-2xl shadow-2xl">
+            <section className="relative">
+              <section className="aiden-card overflow-hidden rounded-2xl shadow-2xl">
                 <img
                   src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=700&h=500&fit=crop&auto=format"
                   alt="Panel de gestión de vivero AiDEN"
                   className="w-full h-64 object-cover"
                 />
-                <div className="p-4 grid grid-cols-3 gap-3">
+                <section className="p-4 grid grid-cols-3 gap-3">
                   {[
                     { label: "Lotes Activos", value: "48", trend: "+3" },
                     { label: "Inventario", value: "94%", trend: "OK" },
                     { label: "Alertas", value: "2", trend: "↓" },
                   ].map((kpi) => (
-                    <div key={kpi.label} className="bg-aiden-bg rounded-xl p-3">
+                    <section key={kpi.label} className="bg-aiden-bg rounded-xl p-3">
                       <p className="text-xs text-aiden-muted">{kpi.label}</p>
                       <p className="text-xl font-bold text-aiden-text mt-1" style={{ fontFamily: "DM Sans, sans-serif" }}>
                         {kpi.value}
                       </p>
                       <span className="text-xs text-aiden-secondary font-medium">{kpi.trend}</span>
-                    </div>
+                    </section>
                   ))}
-                </div>
-              </div>
-              <div className="absolute -top-4 -right-4 w-20 h-20 bg-aiden-light rounded-full opacity-60" />
-              <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-aiden-secondary rounded-full opacity-20" />
-            </div>
-          </div>
-        </div>
+                </section>
+              </section>
+              <section className="absolute -top-4 -right-4 w-20 h-20 bg-aiden-light rounded-full opacity-60" />
+              <section className="absolute -bottom-4 -left-4 w-12 h-12 bg-aiden-secondary rounded-full opacity-20" />
+            </section>
+          </section>
+        </section>
       </section>
 
       {/* Gestión Centralizada */}
       <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-12">
+        <section className="max-w-7xl mx-auto px-6">
+          <section className="text-center mb-12">
             <p className="text-sm font-semibold text-aiden-secondary uppercase tracking-widest mb-3">
               Gestión Centralizada
             </p>
             <h2 className="text-3xl font-bold text-aiden-text" style={{ fontFamily: "DM Sans, sans-serif" }}>
               Todo lo que necesita tu vivero, en un solo lugar
             </h2>
-          </div>
+          </section>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <section className="grid md:grid-cols-3 gap-8">
             {[
               {
                 icon: <Eye size={24} className="text-aiden-primary" />,
@@ -245,70 +245,70 @@ export default function Landing() {
                 desc: "Trazabilidad completa de cada lote: desde la siembra hasta la venta, con registros de inspecciones, incidencias y actividades.",
               },
             ].map((card) => (
-              <div key={card.title} className="aiden-card p-7 hover:shadow-md transition-shadow group">
-                <div className="w-12 h-12 bg-aiden-light rounded-xl flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
+              <section key={card.title} className="aiden-card p-7 hover:shadow-md transition-shadow group">
+                <section className="w-12 h-12 bg-aiden-light rounded-xl flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
                   {card.icon}
-                </div>
+                </section>
                 <h3 className="text-lg font-semibold text-aiden-text mb-3" style={{ fontFamily: "DM Sans, sans-serif" }}>
                   {card.title}
                 </h3>
                 <p className="text-sm text-aiden-muted leading-relaxed">{card.desc}</p>
-              </div>
+              </section>
             ))}
-          </div>
-        </div>
+          </section>
+        </section>
       </section>
 
       {/* Módulos */}
       <section className="py-20 bg-aiden-bg">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-12">
+        <section className="max-w-7xl mx-auto px-6">
+          <section className="text-center mb-12">
             <p className="text-sm font-semibold text-aiden-secondary uppercase tracking-widest mb-3">
               Módulos Operativos
             </p>
             <h2 className="text-3xl font-bold text-aiden-text" style={{ fontFamily: "DM Sans, sans-serif" }}>
               9 módulos diseñados para el vivero
             </h2>
-          </div>
+          </section>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <section className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {modules.map((mod) => (
-              <div
+              <section
                 key={mod.name}
                 className="aiden-card p-5 hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer group"
               >
-                <div className="w-10 h-10 bg-aiden-light rounded-lg flex items-center justify-center mb-4 text-aiden-primary group-hover:bg-aiden-primary group-hover:text-white transition-colors">
+                <section className="w-10 h-10 bg-aiden-light rounded-lg flex items-center justify-center mb-4 text-aiden-primary group-hover:bg-aiden-primary group-hover:text-white transition-colors">
                   {mod.icon}
-                </div>
+                </section>
                 <h3 className="font-semibold text-aiden-text mb-2">{mod.name}</h3>
                 <p className="text-xs text-aiden-muted leading-relaxed">{mod.desc}</p>
-              </div>
+              </section>
             ))}
-          </div>
-        </div>
+          </section>
+        </section>
       </section>
 
       {/* Acceso por Rol */}
       <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-12">
+        <section className="max-w-7xl mx-auto px-6">
+          <section className="text-center mb-12">
             <p className="text-sm font-semibold text-aiden-secondary uppercase tracking-widest mb-3">
               Acceso por Rol
             </p>
             <h2 className="text-3xl font-bold text-aiden-text" style={{ fontFamily: "DM Sans, sans-serif" }}>
               Cada usuario ve lo que necesita
             </h2>
-          </div>
+          </section>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <section className="grid md:grid-cols-3 gap-6">
             {roles.map((r) => (
-              <div key={r.title} className="aiden-card p-7 flex flex-col">
-                <div
+              <section key={r.title} className="aiden-card p-7 flex flex-col">
+                <section
                   className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
                   style={{ background: r.bg }}
                 >
                   <Shield size={22} style={{ color: r.color }} />
-                </div>
+                </section>
                 <h3 className="text-xl font-bold mb-4" style={{ fontFamily: "DM Sans, sans-serif", color: r.color }}>
                   {r.title}
                 </h3>
@@ -327,27 +327,27 @@ export default function Landing() {
                 >
                   Ver demo como {r.title}
                 </button>
-              </div>
+              </section>
             ))}
-          </div>
-        </div>
+          </section>
+        </section>
       </section>
 
       {/* Footer */}
       <footer className="bg-aiden-primary text-white py-16">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-4 gap-10 mb-12">
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">
+        <section className="max-w-7xl mx-auto px-6">
+          <section className="grid md:grid-cols-4 gap-10 mb-12">
+            <section>
+              <section className="flex items-center gap-2 mb-4">
+                <section className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">
                   <Leaf size={16} className="text-white" />
-                </div>
+                </section>
                 <span className="font-bold text-xl" style={{ fontFamily: "DM Sans, sans-serif" }}>AiDEN</span>
-              </div>
+              </section>
               <p className="text-sm text-white/70 leading-relaxed">
                 Sistema ERP para gestión integral de viveros agrícolas. Inteligente, moderno y preparado para producción.
               </p>
-            </div>
+            </section>
 
             {[
               {
@@ -363,7 +363,7 @@ export default function Landing() {
                 links: ["Iniciar Sesión", "Registrarse", "Recuperar Contraseña", "Design System"],
               },
             ].map((col) => (
-              <div key={col.title}>
+              <section key={col.title}>
                 <p className="font-semibold text-sm mb-4 text-white/90">{col.title}</p>
                 <ul className="space-y-2">
                   {col.links.map((link) => (
@@ -374,15 +374,15 @@ export default function Landing() {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </section>
             ))}
-          </div>
+          </section>
 
-          <div className="border-t border-white/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <section className="border-t border-white/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-white/60">
               © 2024 AiDEN · Artificial Intelligence for Nursery Management
             </p>
-            <div className="flex gap-2">
+            <section className="flex gap-2">
               <button
                 onClick={() => navigate("design-system")}
                 className="text-xs bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-full text-white/80 transition-colors"
@@ -395,10 +395,10 @@ export default function Landing() {
               >
                 Acceso
               </button>
-            </div>
-          </div>
-        </div>
+            </section>
+          </section>
+        </section>
       </footer>
-    </div>
+    </section>
   )
 }

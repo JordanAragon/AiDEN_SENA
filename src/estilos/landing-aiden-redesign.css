@@ -1003,7 +1003,7 @@
 .aiden-footer-inner .aiden-brand  {
   color: var(--ink);
 }
-.aiden-footer-inner > div  {
+.aiden-footer-inner > *  {
   display: flex;
   gap: 18px;
 }
@@ -3240,12 +3240,12 @@
   border-bottom: 1px solid rgba(217,234,115,.14);
 }
 
-.aiden-system-readout > div {
+.aiden-system-readout > * {
   min-height: 112px;
   padding: 18px 22px 17px 0;
 }
 
-.aiden-system-readout > div + div {
+.aiden-system-readout > * + * {
   padding-left: 22px;
   border-left: 1px solid rgba(217,234,115,.11);
 }
@@ -3483,13 +3483,13 @@
     grid-template-columns: repeat(2, minmax(0,1fr));
   }
 
-  .aiden-system-readout > div:nth-child(3) {
+  .aiden-system-readout > *:nth-child(3) {
     border-left: 0;
     padding-left: 0;
     border-top: 1px solid rgba(217,234,115,.11);
   }
 
-  .aiden-system-readout > div:nth-child(4) {
+  .aiden-system-readout > *:nth-child(4) {
     border-top: 1px solid rgba(217,234,115,.11);
   }
 
@@ -3575,12 +3575,12 @@
     font-size: 9px;
   }
 
-  .aiden-system-readout > div {
+  .aiden-system-readout > * {
     min-height: 98px;
     padding-right: 16px;
   }
 
-  .aiden-system-readout > div + div {
+  .aiden-system-readout > * + * {
     padding-left: 16px;
   }
 
@@ -3848,12 +3848,12 @@
   border-top-color: rgba(255,255,255,.12);
 }
 
-.aiden-system-readout > div {
+.aiden-system-readout > * {
   min-height: 112px;
   transition: background-color .18s ease;
 }
 
-.aiden-system-readout > div:hover {
+.aiden-system-readout > *:hover {
   background: rgba(255,255,255,.025);
 }
 
