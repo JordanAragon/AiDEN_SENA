@@ -56,18 +56,18 @@ export default function BarraLateral() {
       }}
       className="flex flex-col bg-white border-r border-[#E5EDE8] h-full relative"
     >
-      <div className="flex items-center px-4 py-4 border-b border-[#E5EDE8]" style={{ height: 64, minHeight: 64 }}>
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-aiden-primary rounded-lg flex items-center justify-center">
+      <section className="flex items-center px-4 py-4 border-b border-[#E5EDE8]" style={{ height: 64, minHeight: 64 }}>
+        <section className="flex items-center gap-2">
+          <section className="w-8 h-8 bg-aiden-primary rounded-lg flex items-center justify-center">
             <Leaf size={16} className="text-white" />
-          </div>
+          </section>
           {!sidebarCollapsed && (
             <span className="font-display font-bold text-aiden-primary text-lg tracking-tight" style={{ fontFamily: "DM Sans, sans-serif" }}>
               AiDEN
             </span>
           )}
-        </div>
-      </div>
+        </section>
+      </section>
 
       <nav className="flex-1 px-3 py-4 space-y-0.5 overflow-y-auto">
         {filteredItems.map((item) => {
@@ -88,12 +88,12 @@ export default function BarraLateral() {
       </nav>
 
       {!sidebarCollapsed && (
-        <div className="px-3 py-4 border-t border-[#E5EDE8]">
-          <div className="rounded-lg bg-aiden-light p-3">
+        <section className="px-3 py-4 border-t border-[#E5EDE8]">
+          <section className="rounded-lg bg-aiden-light p-3">
             <p className="text-xs font-medium text-aiden-primary mb-1">Rol activo</p>
             <p className="text-xs text-aiden-muted capitalize">{role}</p>
-          </div>
-        </div>
+          </section>
+        </section>
       )}
 
       <button
