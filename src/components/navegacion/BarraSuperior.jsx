@@ -36,8 +36,8 @@ export default function BarraSuperior() {
 
   return (
     <header className="h-16 bg-white border-b border-[#E5EDE8] flex items-center justify-between px-6 shrink-0 relative z-20">
-      <div className="flex items-center gap-3">
-        <div className="relative">
+      <section className="flex items-center gap-3">
+        <section className="relative">
           <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-aiden-muted" />
           <input
             className="aiden-input pl-9 w-64"
@@ -45,11 +45,11 @@ export default function BarraSuperior() {
             placeholder="Buscar módulos, lotes, empleados..."
             aria-label="Buscar en AiDEN"
           />
-        </div>
-      </div>
+        </section>
+      </section>
 
-      <div className="flex items-center gap-3">
-        <div className="relative">
+      <section className="flex items-center gap-3">
+        <section className="relative">
           <button
             type="button"
             onClick={() => { setShowNotifs(!showNotifs); setShowProfile(false) }}
@@ -61,42 +61,42 @@ export default function BarraSuperior() {
             <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-aiden-danger rounded-full" />
           </button>
           {showNotifs && (
-            <div className="absolute right-0 top-12 w-80 aiden-card py-2 shadow-lg z-30">
+            <section className="absolute right-0 top-12 w-80 aiden-card py-2 shadow-lg z-30">
               <p className="text-xs font-semibold text-aiden-muted uppercase tracking-wide px-4 py-2">Notificaciones</p>
               {notifs.map((n) => (
-                <div key={n.id} className="px-4 py-3 hover:bg-aiden-bg cursor-pointer border-b border-[#E5EDE8] last:border-0">
+                <section key={n.id} className="px-4 py-3 hover:bg-aiden-bg cursor-pointer border-b border-[#E5EDE8] last:border-0">
                   <p className="text-sm text-aiden-text leading-snug">{n.text}</p>
                   <p className="text-xs text-aiden-muted mt-1">{n.time}</p>
-                </div>
+                </section>
               ))}
-            </div>
+            </section>
           )}
-        </div>
+        </section>
 
-        <div className="relative">
+        <section className="relative">
           <button
             type="button"
             onClick={() => { setShowProfile(!showProfile); setShowNotifs(false) }}
             className="flex items-center gap-2 pl-2 pr-3 py-1.5 rounded-lg hover:bg-aiden-light transition-colors"
             aria-expanded={showProfile}
           >
-            <div className="w-7 h-7 bg-aiden-primary rounded-full flex items-center justify-center">
+            <section className="w-7 h-7 bg-aiden-primary rounded-full flex items-center justify-center">
               <User size={14} className="text-white" />
-            </div>
-            <div className="text-left hidden sm:block">
+            </section>
+            <section className="text-left hidden sm:block">
               <p className="text-sm font-medium text-aiden-text leading-none">
                 {sesion?.name || "Usuario AiDEN"}
               </p>
               <p className="text-xs text-aiden-muted mt-0.5">{roleLabel}</p>
-            </div>
+            </section>
             <ChevronDown size={14} className="text-aiden-muted" />
           </button>
 
           {showProfile && (
-            <div className="absolute right-0 top-12 w-52 aiden-card py-2 shadow-lg z-30">
-              <div className="px-4 py-3 border-b border-[#E5EDE8]">
+            <section className="absolute right-0 top-12 w-52 aiden-card py-2 shadow-lg z-30">
+              <section className="px-4 py-3 border-b border-[#E5EDE8]">
                 <p className="text-xs font-medium text-aiden-text">Cambiar rol (demo)</p>
-              </div>
+              </section>
               {["admin", "supervisor", "operario"].map((r) => (
                 <button
                   key={r}
@@ -108,7 +108,7 @@ export default function BarraSuperior() {
                   {r === "admin" ? "Administrador" : r === "supervisor" ? "Supervisor" : "Operario"}
                 </button>
               ))}
-              <div className="border-t border-[#E5EDE8] mt-1 pt-1">
+              <section className="border-t border-[#E5EDE8] mt-1 pt-1">
                 <button
                   type="button"
                   onClick={() => { logout(); navigate("/") }}
@@ -117,11 +117,11 @@ export default function BarraSuperior() {
                   <LogOut size={14} />
                   Cerrar sesión
                 </button>
-              </div>
-            </div>
+              </section>
+            </section>
           )}
-        </div>
-      </div>
+        </section>
+      </section>
     </header>
   )
 }
