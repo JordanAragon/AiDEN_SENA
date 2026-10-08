@@ -6,9 +6,9 @@ import CargandoVista from "../components/ui/CargandoVista";
 import { PERMISOS } from "./permisos";
 
 const Home = lazy(() => import("../pages/Home"));
-const Login = lazy(() => import("../pages/Login"));
-const Signup = lazy(() => import("../pages/Signup"));
-const ForgotPassword = lazy(() => import("../pages/ForgotPassword"));
+const Login = lazy(() => import("../pages/Login.tsx"));
+const Signup = lazy(() => import("../pages/Signup.tsx"));
+const ForgotPassword = lazy(() => import("../pages/ForgotPassword.tsx"));
 const InformacionLegal = lazy(() => import("../pages/InformacionLegal"));
 const NoEncontrada = lazy(() => import("../pages/NoEncontrada"));
 const Perfil = lazy(() => import("../pages/Perfil"));
