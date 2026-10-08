@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { User, Shield, Bell, Globe, Database, Key, Eye, EyeOff, Save } from "lucide-react"
-import { useNav } from "../context/NavigationContext"
+import { useSesion } from "../../hooks/useSesion"
 
 type Tab = "profile" | "security" | "notifications" | "system" | "audit"
 
@@ -15,7 +15,7 @@ const auditLog = [
 export default function Settings() {
   const [tab, setTab] = useState<Tab>("profile")
   const [showPass, setShowPass] = useState(false)
-  const { role } = useNav()
+  const role = useSesion()?.role || "supervisor"
 
   const tabs: { id: Tab; label: string; icon: React.ReactNode }[] = [
     { id: "profile", label: "Perfil", icon: <User size={16} /> },

@@ -16,6 +16,7 @@ export const PERMISOS = {
   "/reportes": GESTION,
   "/ia": GESTION,
   "/configuracion": ["admin"],
+  "/design-system": TODOS,
 };
 
 /*
