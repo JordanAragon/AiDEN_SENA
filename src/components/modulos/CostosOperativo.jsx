@@ -52,7 +52,7 @@ export default function Costs() {
   const [showAdd, setShowAdd] = useState(false)
 
   const totalCostsMonth = monthlyCosts[monthlyCosts.length - 1]
-  const totalMonth = Object.values(totalCostsMonth).filter(v => typeof v === "number").reduce((a, b) => a + (b ), 0) as number
+  const totalMonth = Object.values(totalCostsMonth).filter(v => typeof v === "number").reduce((a, b) => a + (b ), 0)
 
   return (
     <div className="space-y-6">
@@ -116,7 +116,7 @@ export default function Costs() {
                   <Cell key={i} fill={entry.color} stroke="none" />
                 ))}
               </Pie>
-              <Tooltip contentStyle={{ borderRadius: 8, border: "1px solid #E5EDE8", fontSize: 11 }} formatter={(v: unknown) => [`$${((v as number) / 1000).toFixed(0)}K`]} />
+              <Tooltip contentStyle={{ borderRadius: 8, border: "1px solid #E5EDE8", fontSize: 11 }} formatter={(v) => [`$${((v) / 1000).toFixed(0)}K`]} />
             </PieChart>
           </div>
           {categoryBreakdown.map(c => (
@@ -139,7 +139,7 @@ export default function Costs() {
             <CartesianGrid strokeDasharray="3 3" stroke="#E5EDE8" />
             <XAxis dataKey="lot" tick={{ fontSize: 12, fill: "#61716A" }} axisLine={false} tickLine={false} />
             <YAxis tick={{ fontSize: 11, fill: "#61716A" }} axisLine={false} tickLine={false} tickFormatter={v => `$${v}`} />
-            <Tooltip contentStyle={{ borderRadius: 8, border: "1px solid #E5EDE8", fontSize: 12 }} formatter={(v: unknown) => [`$${(v as number).toLocaleString()}`, "Costo"]} />
+            <Tooltip contentStyle={{ borderRadius: 8, border: "1px solid #E5EDE8", fontSize: 12 }} formatter={(v) => [`$${(v).toLocaleString()}`, "Costo"]} />
             <Bar dataKey="cost" fill="#0A4F31" radius={[4, 4, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
