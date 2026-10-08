@@ -3,7 +3,7 @@ import DashboardAdmin from "./pages/DashboardAdmin";
 import DashboardSupervisor from "./pages/DashboardSupervisor";
 
 function App() {
-  const path = window.location.pathname;
+  const path = window.location.pathname.replace(/\/+$/, "") || "/";
 
   if (path === "/admin") {
     return <DashboardAdmin />;
