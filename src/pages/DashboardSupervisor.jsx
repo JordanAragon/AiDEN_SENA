@@ -60,45 +60,45 @@ export default function DashboardSupervisor() {
   ]
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
+    <section className="space-y-6">
+      <section className="flex items-center justify-between">
+        <section>
           <h1 className="page-title">Dashboard · Supervisor</h1>
           <p className="text-sm text-aiden-muted mt-1">Jueves 28 de agosto, 2026 · Turno mañana</p>
-        </div>
+        </section>
         <button onClick={() => navigate("/reportes")} className="aiden-btn-secondary text-sm">
           <Activity size={15} />
           Ver Reportes
         </button>
-      </div>
+      </section>
 
       {/* KPIs */}
-      <div className="grid grid-cols-2 xl:grid-cols-4 gap-4">
+      <section className="grid grid-cols-2 xl:grid-cols-4 gap-4">
         {kpis.map((kpi) => (
-          <div key={kpi.label} className="aiden-card p-5">
-            <div className="flex items-start justify-between mb-4">
-              <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${kpi.bg} ${kpi.color}`}>
+          <section key={kpi.label} className="aiden-card p-5">
+            <section className="flex items-start justify-between mb-4">
+              <section className={`w-10 h-10 rounded-xl flex items-center justify-center ${kpi.bg} ${kpi.color}`}>
                 {kpi.icon}
-              </div>
-            </div>
+              </section>
+            </section>
             <p className="text-2xl font-bold text-aiden-text" style={{ fontFamily: "DM Sans, sans-serif" }}>
               {kpi.value}
             </p>
             <p className="text-sm text-aiden-muted mt-0.5">{kpi.label}</p>
             <p className="text-xs text-aiden-muted mt-2 border-t border-[#E5EDE8] pt-2">{kpi.change}</p>
-          </div>
+          </section>
         ))}
-      </div>
+      </section>
 
       {/* Charts row */}
-      <div className="grid lg:grid-cols-3 gap-6">
-        <div className="aiden-card p-5 lg:col-span-2">
-          <div className="flex items-center justify-between mb-5">
-            <div>
+      <section className="grid lg:grid-cols-3 gap-6">
+        <section className="aiden-card p-5 lg:col-span-2">
+          <section className="flex items-center justify-between mb-5">
+            <section>
               <p className="section-title">Producción Mensual</p>
               <p className="text-xs text-aiden-muted mt-0.5">Lotes activos vs. cosechas realizadas</p>
-            </div>
-          </div>
+            </section>
+          </section>
           <ResponsiveContainer width="100%" height={200}>
             <AreaChart data={productionData}>
               <defs>
@@ -121,9 +121,9 @@ export default function DashboardSupervisor() {
               <Area type="monotone" dataKey="cosecha" stroke="#157347" strokeWidth={2} fill="url(#gCosecha)" name="Cosechas" />
             </AreaChart>
           </ResponsiveContainer>
-        </div>
+        </section>
 
-        <div className="aiden-card p-5">
+        <section className="aiden-card p-5">
           <p className="section-title mb-1">Stock por Categoría</p>
           <p className="text-xs text-aiden-muted mb-5">Porcentaje disponible</p>
           <ResponsiveContainer width="100%" height={200}>
@@ -135,18 +135,18 @@ export default function DashboardSupervisor() {
               <Bar dataKey="stock" fill="#0A4F31" radius={[0, 4, 4, 0]} />
             </BarChart>
           </ResponsiveContainer>
-        </div>
-      </div>
+        </section>
+      </section>
 
       {/* Activities + Alerts */}
-      <div className="grid lg:grid-cols-3 gap-6">
-        <div className="aiden-card p-5 lg:col-span-2">
+      <section className="grid lg:grid-cols-3 gap-6">
+        <section className="aiden-card p-5 lg:col-span-2">
           <p className="section-title mb-5">Actividades Recientes</p>
-          <div className="space-y-0">
+          <section className="space-y-0">
             {activities.map((act, i) => (
-              <div key={i} className="flex gap-4 py-3 border-b border-[#E5EDE8] last:border-0 group">
-                <div className="flex flex-col items-center">
-                  <div
+              <section key={i} className="flex gap-4 py-3 border-b border-[#E5EDE8] last:border-0 group">
+                <section className="flex flex-col items-center">
+                  <section
                     className="w-2 h-2 rounded-full mt-1.5 shrink-0"
                     style={{
                       background:
@@ -156,34 +156,34 @@ export default function DashboardSupervisor() {
                           : "#2563EB",
                     }}
                   />
-                  {i < activities.length - 1 && <div className="w-px flex-1 bg-[#E5EDE8] mt-1" />}
-                </div>
-                <div className="flex-1 min-w-0">
+                  {i < activities.length - 1 && <section className="w-px flex-1 bg-[#E5EDE8] mt-1" />}
+                </section>
+                <section className="flex-1 min-w-0">
                   <p className="text-sm text-aiden-text">{act.action}</p>
-                  <div className="flex items-center gap-3 mt-1">
+                  <section className="flex items-center gap-3 mt-1">
                     <span className="text-xs text-aiden-muted font-medium">{act.user}</span>
                     <span className="flex items-center gap-1 text-xs text-aiden-muted">
                       <Clock size={11} />
                       {act.time}
                     </span>
-                  </div>
-                </div>
-              </div>
+                  </section>
+                </section>
+              </section>
             ))}
-          </div>
-        </div>
+          </section>
+        </section>
 
-        <div className="aiden-card p-5">
+        <section className="aiden-card p-5">
           <p className="section-title mb-5">Alertas Activas</p>
-          <div className="space-y-3">
+          <section className="space-y-3">
             {alerts.map((a, i) => (
-              <div key={i} className="p-4 rounded-xl bg-aiden-bg border border-[#E5EDE8]">
-                <div className="flex items-start justify-between gap-2 mb-2">
+              <section key={i} className="p-4 rounded-xl bg-aiden-bg border border-[#E5EDE8]">
+                <section className="flex items-start justify-between gap-2 mb-2">
                   <AlertTriangle size={15} className="text-aiden-warning shrink-0 mt-0.5" />
                   <span className={`badge ${a.color} ml-auto`}>{a.sev}</span>
-                </div>
+                </section>
                 <p className="text-sm text-aiden-text leading-snug">{a.msg}</p>
-              </div>
+              </section>
             ))}
             <button
               onClick={() => navigate("/calidad")}
@@ -191,9 +191,9 @@ export default function DashboardSupervisor() {
             >
               Ver todas las alertas
             </button>
-          </div>
-        </div>
-      </div>
-    </div>
+          </section>
+        </section>
+      </section>
+    </section>
   )
 }
